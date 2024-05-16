@@ -40,10 +40,11 @@ if __name__ == "__main__":
 		[15, 35, 0, 30],
 		[20, 25, 30, 0]
     ])
+    distancia, ruta = traveling_salesman_problem(distances)
+    print("Solución encontrada:")
+    print(f"Distancia minima: {distancia}, Ruta: {ruta}")
 
-    print(traveling_salesman_problem(distances))
-
-    # Ejemplo con matriz de distancias entre 12 ciudades de Alemania
+    # Ejemplo con matriz de distancias entre 12 ciudades de Alemania (tarda bastante tiempo en ejecutarse)
     # obtenido de: https://medium.com/@marioskokmotos2/the-travelling-salesman-problem-an-implementation-in-python-d2b87e48b9d9
     # Nodos: 
     # 0 — Augsburg, 1 — Munich, 2 — Stuttgart, 
@@ -51,7 +52,7 @@ if __name__ == "__main__":
     # 6 — Berlin, 7 — Hanover, 8 — Bremen, 
     # 9 — Hamburg, 10 — Cologne, 11 — Frankfurt
     # Costo de la solucion: 1821; camino: 0 - 2 - 11 - 10 - 7 - 8 - 9 - 6 - 5 - 4 - 3 - 1
-    dist2 = np.array([
+    """dist2 = np.array([
         [0,57,133,122,347,362,495,452,543,578,404,250],
 	    [57,0,188,144,356,355,498,483,577,605,449,298],
 	    [133,188,0,157,365,412,511,402,480,534,289,153],
@@ -65,4 +66,6 @@ if __name__ == "__main__":
 	    [404,449,289,337,380,473,477,245,270,355,0,150],
 	    [250,298,153,187,294,372,422,257,330,392,150,0]
 	])
-    print(traveling_salesman_problem(dist2))
+    distancia, ruta = traveling_salesman_problem(dist2)
+    print("Solución encontrada:")
+    print(f"Distancia minima: {distancia}, Ruta: {ruta}")"""
