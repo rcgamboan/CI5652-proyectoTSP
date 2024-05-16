@@ -5,8 +5,10 @@ def obtener_ciudades(filename):
     with open(filename, 'r') as file:
         lines = file.readlines()
 
+    start_index = lines.index('NODE_COORD_SECTION\n') + 1
+
     # Lee las lineas desde la 7 a la penúltima, donde se encuentran las coordendas de los nodos
-    node_lines = lines[6:-2]
+    node_lines = lines[start_index:-1]
 
     # Inicializa la matriz de coordenadas
     coordinates = []
@@ -27,15 +29,18 @@ def obtener_ciudades(filename):
 def obtener_mejor_ruta(filename):
     with open(filename, 'r') as file:
         lines = file.readlines()
-    
-    node_lines = lines[4:-2]
+    start_index = lines.index('TOUR_SECTION\n') + 1
+    end_index = lines.index('-1\n')
+    node_lines = lines[start_index:end_index]
     ruta = []
     # Procesa cada línea
     for line in node_lines:
         # Divide la línea en palabras
         words = line.split()
+        for num in words:
+            ruta.append(int(num)-1)
 
         # Convierte las coordenadas a flotantes y las añade a la matriz
-        ruta.append(int(words[0])-1)
+        #ruta.append(int(words[0])-1)
     ruta.append(ruta[0])
     return ruta
