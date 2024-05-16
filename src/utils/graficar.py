@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 
 # Utilidad para graficar las ciudades en un plano.
-def graficar_ciudades(cities, title = "Ciudades"):
+def graficar_ciudades(cities, title = "Ciudades", mostrar = True):
 
     plt.style.use("fivethirtyeight")
 
@@ -14,11 +14,12 @@ def graficar_ciudades(cities, title = "Ciudades"):
     plt.axis("off")
     plt.title(title)
     plt.savefig(f"../img/{title}.png")
-    plt.show()
+    if mostrar:
+        plt.show()
     plt.close()
 
 # Utilidad para graficar el recorrido de las ciudades en un plano.
-def graficar_recorrido(path, cities, title = "Recorrido"):
+def graficar_recorrido(path, cities, title = "Recorrido", mostrar = False):
 
     
     plt.scatter(
@@ -36,5 +37,7 @@ def graficar_recorrido(path, cities, title = "Recorrido"):
 
     plt.axis("off")
     plt.savefig(f"../img/{title}.png")
-    plt.show()
+    if mostrar:
+        plt.show()
+    plt.close()
     
