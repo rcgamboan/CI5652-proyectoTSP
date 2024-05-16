@@ -17,7 +17,7 @@ from utils.leer_archivo import obtener_ciudades, obtener_mejor_ruta
 # selecciona el nodo mas cercano que no haya sido visitado.
 # Este proceso se repite hasta visitar todos los nodos.
 # Tiempo de ejecución: O(n^2) donde n es la cantidad de nodos.
-def nearest_neighbour(matriz_distancia, nodo_inicial = 0):
+def nearest_neighbour(matriz_distancia, nodo_inicial = 0, guardar = False):
     
     cantidad_nodos = len(matriz_distancia)
     # Inicializa la ruta con el nodo inicial.
@@ -25,6 +25,7 @@ def nearest_neighbour(matriz_distancia, nodo_inicial = 0):
     # Inicializa el conjunto de nodos visitados.
     visitados = set([nodo_inicial])
 
+    iter = 0
     # Se visitan todos los nodos, en cada iteración se selecciona el nodo más cercano.
     while len(visitados) < cantidad_nodos:  
         distancia_min = float('inf')
@@ -37,6 +38,9 @@ def nearest_neighbour(matriz_distancia, nodo_inicial = 0):
         # El nodo más cercano se agrega al recorrido y se marca como visitado
         ruta.append(sig_nodo)
         visitados.add(sig_nodo)
+        if guardar:
+            graficar_recorrido(ruta, ciudades, f"NN iter{iter}",False)
+        iter+=1
 
     # Agrega el nodo inicial al final de la ruta para completar el ciclo.
     ruta.append(nodo_inicial)
@@ -63,17 +67,22 @@ def nearest_neighbour_mejor_inicio(matriz_distancia):
 # Retorna la ruta hallada con el costo minimo y su costo asociado.
 # Para resolver el problema, parte de un nodo inicial y en cada paso
 # selecciona el nodo que al ser insertado en la ruta minimiza el aumento de la distancia.
-def greedy_insertion(matriz_distancia, nodo_inicial = 0):
+def greedy_insertion(matriz_distancia, nodo_inicial = 0, guardar = False):
     cantidad_nodos = len(matriz_distancia)
     ruta = [nodo_inicial, nodo_inicial]
     no_visitados = set(range(len(matriz_distancia))) - {nodo_inicial}
-
+    iter = 0
     while no_visitados:
         # Encuentra el nodo no visitado y el lugar donde insertarlo en la ruta,
         # de manera que se minimice el aumento de la distancia.
         sig_nodo, posicion_insertar = min(((node, i) for node in no_visitados for i in range(1, len(ruta))), key=lambda x: matriz_distancia[ruta[x[1]-1]][x[0]] + matriz_distancia[x[0]][ruta[x[1]]] - matriz_distancia[ruta[x[1]-1]][ruta[x[1]]])
         ruta.insert(posicion_insertar, sig_nodo)
         no_visitados.remove(sig_nodo)
+        if guardar:
+            # Genera una imagen por iteracion,
+            # mostrando como se van agregando los nodos a la ruta.
+            graficar_recorrido(ruta, ciudades, f"GI iter{iter}",False)
+        iter+=1
 
     # Calcula la distancia total de la ruta
     distancia_total = sum(matriz_distancia[ruta[i-1]][ruta[i]] for i in range(cantidad_nodos+1))
@@ -86,7 +95,7 @@ def greedy_insertion_mejor_inicio(matriz_distancia):
     min_distance = float('inf')
     best_path = None
     for i in range(len(matriz_distancia)):
-        distance, path = greedy_insertion(matriz_distancia, i)
+        distance, path = greedy_insertion(matriz_distancia, i,False)
         if distance < min_distance:
             min_distance = distance
             best_path = path
@@ -112,7 +121,8 @@ if __name__ == "__main__":
     
     print(f"Distancia minima posible: {menor_distancia}")
     
-    distanciaNN, rutaNN = nearest_neighbour(matriz_distancia, 0)
+    guardar = False
+    distanciaNN, rutaNN = nearest_neighbour(matriz_distancia, 0, guardar)
     print("\nNearest Neighbour")
     print(f"Distancia total: {round(distanciaNN,2)}")
     
@@ -120,7 +130,7 @@ if __name__ == "__main__":
     print("\nNearest Neighbour mejor inicio")
     print(f"Distancia total: {round(distanciaNNBS,2)}")
 
-    distanciaGI, rutaGI = greedy_insertion(matriz_distancia,0)
+    distanciaGI, rutaGI = greedy_insertion(matriz_distancia,0, guardar)
     print("\nGreedy Insertion")
     print(f"Distancia total: {round(distanciaGI,2)}")
 
@@ -129,10 +139,11 @@ if __name__ == "__main__":
     print(f"Distancia total: {round(distanciaGIBS,2)}")
 
     graficar = False
+    mostrar_imagenes = False
     if graficar:
-        graficar_ciudades(ciudades, "Ciudades")
-        graficar_recorrido(mejor_ruta, ciudades, "Mejor Ruta")
-        graficar_recorrido(rutaNN, ciudades, "Nearest Neighbour")
-        graficar_recorrido(rutaNNBS, ciudades, "Nearest Neighbour with Best Start")
-        graficar_recorrido(rutaGI, ciudades, "Greedy Insertion")
-        graficar_recorrido(rutaGIBS, ciudades, "Greedy Insertion with Best Start")
+        graficar_ciudades(ciudades, "berlin52",mostrar_imagenes)
+        graficar_recorrido(mejor_ruta, ciudades, "Mejor Ruta berlin52",mostrar_imagenes)
+        graficar_recorrido(rutaNN, ciudades, "Nearest Neighbour",mostrar_imagenes)
+        graficar_recorrido(rutaNNBS, ciudades, "Nearest Neighbour mejor inicio",mostrar_imagenes)
+        graficar_recorrido(rutaGI, ciudades, "Greedy Insertion",mostrar_imagenes)
+        graficar_recorrido(rutaGIBS, ciudades, "Greedy Insertion mejor inicio",mostrar_imagenes)
