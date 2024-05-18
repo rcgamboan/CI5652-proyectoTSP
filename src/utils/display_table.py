@@ -3,7 +3,7 @@ from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from utils.file_names import FILE_NAMES, LABEL_NAMES
 import numpy as np
 
-def display_table(cols, data, city):
+def display_table(cols, data, city, table_name):
 
     data = np.transpose(data)
 
@@ -43,6 +43,6 @@ def display_table(cols, data, city):
     table.auto_set_font_size(False)
     table.set_fontsize(14)
 
-    plt.suptitle(city, y=0.95, fontsize=14, fontweight='bold')
-    plt.savefig(f"../img/table_{city}.png")
+    plt.suptitle(f"{LABEL_NAMES[table_name]} {city}", y=0.95, fontsize=14, fontweight='bold')
+    plt.savefig(f"../img/{table_name}_{city}.png")
     plt.show()
