@@ -2,6 +2,28 @@ import random
 
 
 def random_tour(distance_matrix, cities):
+    """
+    Genera una ruta aleatoria para la resolución del problema del agente viajero (TSP).
+
+    Esta función selecciona aleatoriamente un nodo inicial y genera una ruta
+    visitando todos los nodos de manera aleatoria. 
+
+    Parámetros:
+    ----------
+
+    distance_matrix ([[int/float]]): Matriz de distancias entre los nodos del problema.
+                                     (distance_matrix[i][j] representa la
+                                     distancia del nodo i al nodo j).
+    cities (list): Lista de nombres o identificadores de las ciudades o nodos.
+
+    Return:
+    ------
+
+    tuple: Una tupla que contiene:
+           - total_distance (int/float): La distancia total de la ruta encontrada.
+           - tour (list): La ruta (lista de nodos) encontrada.
+
+    """
 
     n = len(distance_matrix)
     # Seleccionar un nodo inicial aleatorio

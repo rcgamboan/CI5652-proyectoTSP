@@ -3,6 +3,31 @@ from heuristic.nearest_neighbour import nearest_neighbour
 
 
 def two_opt_local_search(distance_matrix, city, algorithm_func):
+    """
+    Búsqueda local para la resolución del problema del agente viajero (TSP).
+
+    El método mejora iterativamente una solución inicial (generada por un
+    algoritmo heurístico) mediante el intercambio de dos aristas a la vez
+    (2-opt) si el intercambio resulta en una ruta más corta; se repite hasta
+    que no se puedan realizar más mejoras.
+
+    Parámetros: 
+    ----------
+
+    distance_matrix ([[int/float]]): Matriz de distancias entre los nodos del
+                                     problema. (distance_matrix[i][j] representa
+                                     la distancia del nodo i al nodo j).
+    city (list): Lista de nombres o identificadores de las ciudades o nodos.
+    algorithm_func (function): Función de heurística que genera una ruta inicial
+                               (por ejemplo, nearest_neighbour).
+
+    Return:
+    ------
+
+    tuple: Una tupla que contiene:
+           - distancia_total (int/float): La distancia total de la ruta mejorada.
+           - tour (list): La ruta (lista de nodos) mejorada.
+    """
 
     n = len(distance_matrix)
 

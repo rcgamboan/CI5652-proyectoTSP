@@ -33,24 +33,32 @@ def iterative_local_search(
     distance_matrix, city, algorithm_func, max_no_improv_iters=50
 ):
     """
-    Realiza una búsqueda local iterativa (ILS) con perturbación de doble puente.
+    Búsqueda local iterativa para la resolución del problema del agente viajero (TSP).
+
+    El método mejora iterativamente una solución inicial mediante una
+    combinación de movimientos de perturbación (doble puente) y búsqueda local
+    (2-opt). El proceso continúa hasta que se alcanza un número máximo
+    de iteraciones sin mejora.
 
     Parámetros:
     ----------
 
-    Distance_matrix (lista de lista de float): una lista 2D que representa las
-    distancias entre cada par de ciudades.
-    city (lista de tuplas de float): una lista de coordenadas para cada ciudad.
-    algoritmo_func (función): Función que genera un recorrido inicial y su distancia.
-    La firma es algorithm_func(distance_matrix, city) -> (distance, tour).
+    distance_matrix ([[int/float]]): Matriz de distancias entre los nodos del
+                                     problema (distance_matrix[i][j] representa
+                                     la distancia del nodo i al nodo j).
+    city (list): Lista de nombres o identificadores de las ciudades o nodos.
+    algorithm_func (function): Función de heurística que genera una ruta inicial
+    (por ejemplo, nearest_neighbour).
+    max_no_improv_iters (int, opcional): Número máximo de iteraciones sin
+    mejora para detener el algoritmo. Por defecto es 50.
 
-    Returns:
-    -------
+    Return:
+    ------
 
-    tupla: una tupla que contiene:
-        - best_distance (float): La distancia total del mejor recorrido encontrado.
-        - best_tour (lista de int): La secuencia de índices de ciudades que representan
-        el mejor recorrido encontrado.
+    tuple: Una tupla que contiene:
+           - best_distance (int/float): La distancia total de la mejor ruta
+           encontrada.
+           - best_tour (list): La mejor ruta (lista de nodos) encontrada.
     """
 
     # Genera una solucion inicial

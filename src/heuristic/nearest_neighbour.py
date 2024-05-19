@@ -1,15 +1,38 @@
 from utils.graficar import graficar_ciudades, graficar_recorrido
 
 
-# Implementacion de un metodo exacto para TSP
-# usando la heuristica del vecino mas cercano (Nearest Neighbour).
-# Recibe una matriz de distancias entre los nodos del problema.
-# Retorna el camino de costo minimo y su costo asociado.
-# Para resolver el problema, parte de un nodo inicial y en cada paso
-# selecciona el nodo mas cercano que no haya sido visitado.
-# Este proceso se repite hasta visitar todos los nodos.
-# Tiempo de ejecución: O(n^2) donde n es la cantidad de nodos.
 def nearest_neighbour(matriz_distancia, ciudades, nodo_inicial=0, guardar=False):
+    """
+    Método exacto para la resolución del problema del agente viajero (TSP).
+
+    Este método utiliza la heurística del Vecino Más Cercano para encontrar el
+    camino de costo mínimo. Parte de un nodo inicial y, en cada paso, selecciona
+    el nodo más cercano que no haya sido visitado aún. Este proceso se repite
+    hasta visitar todos los nodos.
+
+    Parámetros:
+    ----------
+
+    matriz_distancia ([[int/float]]): Matriz de distancias entre los nodos del
+                                      problema.
+                                      (matriz_distancia[i][j] representa la
+                                      distancia del nodo i al nodo j).
+    ciudades (list): Lista de nombres o identificadores de las ciudades o nodos.
+    nodo_inicial (int, opcional): Índice del nodo inicial desde el cual comenzar
+    la ruta. Por defecto es 0.
+    guardar (bool, opcional): Si es True, genera una imagen por iteración
+    mostrando cómo se van agregando los nodos a la ruta. Por defecto es False.
+
+    Return:
+    ------
+
+    tuple: Una tupla que contiene:
+           - distancia_total (int/float): La distancia total de la ruta encontrada.
+           - ruta (list): La ruta (lista de nodos) encontrada.
+
+    Complejidad de tiempo: 
+    O(n^2) donde n es la cantidad de nodos.
+    """
 
     cantidad_nodos = len(matriz_distancia)
     # Inicializa la ruta con el nodo inicial.
@@ -44,10 +67,30 @@ def nearest_neighbour(matriz_distancia, ciudades, nodo_inicial=0, guardar=False)
     return distancia_total, ruta
 
 
-# Heurística del vecino más cercano con mejor inicio, se ejecuta
-# nearest_neighbour para cada nodo inicial y se selecciona la mejor solución.
-# Tiempo de ejecución: O(n^3)
 def nearest_neighbour_mejor_inicio(matriz_distancia, ciudades):
+    """
+    Ejecuta la heurística del vecino más cercano para cada nodo inicial posible
+    y selecciona la mejor solución encontrada.
+
+    Parámetros:
+    ----------
+
+    matriz_distancia ([[int/float]]): Matriz de distancias entre los nodos del
+                                      problema (matriz_distancia[i][j] 
+                                      representa la distancia del nodo i al
+                                      nodo j).
+    ciudades (list): Lista de nombres o identificadores de las ciudades o nodos.
+
+    Return:
+    ------
+
+    tuple: Una tupla que contiene:
+           - distancia_min (int/float): La distancia mínima de la mejor ruta encontrada.
+           - mejor_ruta (list): La mejor ruta (lista de nodos) encontrada.
+
+    Complejidad de tiempo: 
+    O(n^3) donde n es la cantidad de nodos.
+    """
     distancia_min = float("inf")
     mejor_ruta = None
     for i in range(len(matriz_distancia)):
