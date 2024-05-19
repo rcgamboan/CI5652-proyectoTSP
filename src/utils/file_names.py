@@ -22,5 +22,6 @@ LABEL_NAMES = {
     "two_opt_nn": "2-opt Nearest N",
     "two_opt_greedy": "2-opt Greedy",
     "table_initial": "Camino Inicial",
-    "table_local_search": "Busqueda local"
+    "table_local_search": "Busqueda local",
+    "table_iterated_local_search": "Busqueda Local Iterativa"
 }

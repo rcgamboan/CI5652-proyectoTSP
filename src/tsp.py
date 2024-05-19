@@ -15,6 +15,7 @@ from heuristic.random import random_tour
 from heuristic.greedy import greedy_insertion, greedy_insertion_mejor_inicio
 from heuristic.nearest_neighbour import nearest_neighbour, nearest_neighbour_mejor_inicio
 from heuristic.two_opt import two_opt_local_search
+from heuristic.double_bridge import iterative_local_search
 
 
 def run_algorithm(name, save_graph, show_on_screen, algorithm_func, *args):
@@ -124,14 +125,8 @@ if __name__ == "__main__":
 
 
         ########################## LOCAL SEARCH ##########################
-
-        cols = ["best_tour"]
         data = []
         data.append([round(best_distance_tour,2), 'N/A', ""])
-
-        save_graph = True
-        show_on_screen = False
-        show_each_iteration = False
 
         # RANDOM
         distance_random, tour_random = run_algorithm(
@@ -167,4 +162,42 @@ if __name__ == "__main__":
         )
 
         display_table(cols, data, currentCity, "table_local_search")
+
+        ########################## ITERATED LOCAL SEARCH ##########################
+        data = []
+        data.append([round(best_distance_tour,2), 'N/A', ""])
+
+        # RANDOM
+        distance_random, tour_random = run_algorithm(
+            "two_opt_random", 
+            save_graph, 
+            show_on_screen,
+            iterative_local_search,
+            distance_matrix, 
+            nodes,
+            random_tour
+        )
         
+        # NEAREST NEIGHBOUR
+        distance_two_opt_nn, tour_two_opt_nn = run_algorithm(
+            "two_opt_nn", 
+            save_graph, 
+            show_on_screen,
+            iterative_local_search,
+            distance_matrix, 
+            nodes,
+            nearest_neighbour
+        )
+       
+        # GREEDY
+        distance_two_opt_greedy, tour_two_opt_greedy = run_algorithm(
+            "two_opt_greedy", 
+            save_graph, 
+            show_on_screen,
+            iterative_local_search,
+            distance_matrix, 
+            nodes,
+            greedy_insertion
+        )
+
+        display_table(cols, data, currentCity, "table_iterated_local_search")
