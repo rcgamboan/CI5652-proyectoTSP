@@ -9,16 +9,33 @@ from itertools import permutations
 import numpy as np
 
 
-# Metodo exacto para la resolucion del problema del agente viajero (TSP).
-# Recibe una matriz de distancias entre los nodos del problema.
-# Retorna el camino de costo minimo y su costo asociado.
-# Para resolver el problema genera las n! permutaciones posibles de los nodos
-# y por cada permutacion calcula el costo de recorrer todos los nodos en el orden dado.
-# Almacena el camino de menor costo encontrado hasta el momento,
-# y si en proximas iteraciones encuentra un costo menor, lo actualiza.
-# Este proceso se realiza hasta evaluar todas las permutaciones.
-# Tiempo de ejecución: O(n!) donde n es la cantidad de nodos.
 def traveling_salesman_problem(distances):
+    """
+    Método exacto para la resolución del problema del agente viajero (TSP).
+    
+    Este método utiliza la fuerza bruta para encontrar el camino de costo mínimo.
+    Genera todas las permutaciones posibles de los nodos y calcula el costo de
+    recorrer todos los nodos en el orden dado por cada permutación.
+    
+    Parámetros:
+    ----------
+
+    distances (list of list of int/float): Matriz de distancias entre los nodos
+                                           del problema (distances[i][j]
+                                           representa la distancia del nodo i
+                                           al nodo j).
+    
+    Return:
+    ------
+
+    tuple: Una tupla que contiene:
+           - min_distance (int/float): El costo mínimo del camino encontrado.
+           - min_path (tuple): El camino (permutación de nodos) de costo mínimo.
+    
+    Complejidad de tiempo:
+    O(n!) donde n es la cantidad de nodos, debido a que evalúa todas las
+    permutaciones posibles.
+    """
     cantidad_nodos = len(distances)
     min_path = None
     min_distance = float("inf")
@@ -42,7 +59,8 @@ if __name__ == "__main__":
     print("Solución encontrada:")
     print(f"Distancia minima: {distancia}, Ruta: {ruta}")
 
-    # Ejemplo con matriz de distancias entre 12 ciudades de Alemania (tarda bastante tiempo en ejecutarse)
+    # Ejemplo con matriz de distancias entre 12 ciudades de Alemania
+    # (tarda bastante tiempo en ejecutarse)
     # obtenido de: https://medium.com/@marioskokmotos2/the-travelling-salesman-problem-an-implementation-in-python-d2b87e48b9d9
     # Nodos:
     # 0 — Augsburg, 1 — Munich, 2 — Stuttgart,

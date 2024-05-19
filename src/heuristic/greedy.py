@@ -1,12 +1,30 @@
 from utils.graficar import graficar_ciudades, graficar_recorrido
 
 
-# Heuristica Greedy insertion (tambien llamada cheapest insertion)
-# Recibe una matriz de distancias entre los nodos del problema.
-# Retorna la ruta hallada con el costo minimo y su costo asociado.
-# Para resolver el problema, parte de un nodo inicial y en cada paso
-# selecciona el nodo que al ser insertado en la ruta minimiza el aumento de la distancia.
 def greedy_insertion(matriz_distancia, ciudades, nodo_inicial=0, guardar=False):
+    """
+    Heurística Greedy Insertion (también llamada cheapest insertion) para la
+    resolución del problema del agente viajero (TSP).
+
+    El método comienza desde un nodo inicial y, en cada paso, selecciona el nodo
+    que, al ser insertado en la ruta actual, minimiza el aumento de la
+    distancia total de la ruta.
+    
+    Parámetros:
+    matriz_distancia ([[int/float]]): Matriz de distancias entre los nodos del
+                                      problema. (matriz_distancia[i][j]
+                                      representa la distancia del nodo i al nodo j).
+    ciudades (list): Lista de nombres o identificadores de las ciudades (nodos).
+    nodo_inicial (int): Nodo inicial desde el cual comenzar la ruta. Por defecto es 0.
+    guardar (bool): Si es True, genera una imagen por iteración mostrando cómo
+                    se agregan los nodos a la ruta.
+    
+    Return:
+    tuple: Una tupla que contiene:
+           - distancia_total (int/float): El costo total de la ruta hallada.
+           - ruta (list): La secuencia de nodos en la ruta encontrada.
+    """
+
     cantidad_nodos = len(matriz_distancia)
     ruta = [nodo_inicial, nodo_inicial]
     no_visitados = set(range(len(matriz_distancia))) - {nodo_inicial}
@@ -36,9 +54,23 @@ def greedy_insertion(matriz_distancia, ciudades, nodo_inicial=0, guardar=False):
     return distancia_total, ruta
 
 
-# Heurística greedy insertion con mejor inicio, se ejecuta
-# greedy_insertion para cada nodo inicial y se selecciona la mejor solución.
 def greedy_insertion_mejor_inicio(matriz_distancia, ciudades):
+    """
+    Ejecuta la heurística greedy insertion para cada nodo inicial
+    posible y selecciona la mejor solución encontrada.
+
+    Parámetros:
+    matriz_distancia ([[int/float]]): Matriz de distancias entre los nodos del
+                                      problema (matriz_distancia[i][j]
+                                      representa la distancia del nodo i al
+                                      nodo j).
+    ciudades (list): Lista de nombres o identificadores de las ciudades o nodos.
+
+    Retorna:
+    tuple: Una tupla que contiene:
+           - min_distance (int/float): La distancia mínima de la mejor ruta encontrada.
+           - best_path (list): La mejor ruta (lista de nodos) encontrada.
+    """
     min_distance = float("inf")
     best_path = None
     for i in range(len(matriz_distancia)):
