@@ -131,7 +131,6 @@ if __name__ == "__main__":
         cols = ["best_tour"]
         data = []
         data.append([round(best_distance_tour, 2), "N/A", ""])
-        show_each_iteration = False
 
         # RANDOM
         distance_random, tour_random = run_algorithm(
@@ -188,7 +187,6 @@ if __name__ == "__main__":
         cols = ["best_tour"]
         data = []
         data.append([round(best_distance_tour, 2), "N/A", ""])
-        show_each_iteration = False
 
         # RANDOM
         distance_double_bridge_random, tour_double_bridge_random = run_algorithm(
@@ -240,7 +238,5 @@ if __name__ == "__main__":
         if show_each_iteration:
             generate_timelapse(f"double_bridge_greedy_insertion/{currentCity}", f"{currentCity}/{currentCity}_double_brigde_greedy")
 
-
         display_table(cols, data, currentCity, "table_iterated_local_search")
 
-        break
