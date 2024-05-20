@@ -50,7 +50,7 @@ def run_algorithm(name, current_city, save_graph, show_on_screen, algorithm_func
 if __name__ == "__main__":
 
     # cities = [ "berlin52", "ch130", "tsp225", "pcb442", "pr1002"]
-    cities = ["ch130"]
+    cities = ["tsp225"]
     # cities = []
     
     for currentCity in cities:
@@ -79,7 +79,6 @@ if __name__ == "__main__":
         save_graph = True
         show_on_screen = False
         show_each_iteration = False
-
         # RANDOM
         distance_random, tour_random = run_algorithm(
             "random_tour",
