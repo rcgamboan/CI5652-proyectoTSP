@@ -50,7 +50,7 @@ def run_algorithm(name, current_city, save_graph, show_on_screen, algorithm_func
 if __name__ == "__main__":
 
     # cities = [ "berlin52", "ch130", "tsp225", "pcb442", "pr1002"]
-    cities = ["pcb442"]
+    cities = ["berlin52"]
     # cities = []
     
     for currentCity in cities:
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         save_graph = True
         show_on_screen = False
         show_each_iteration = False
-        
+
         # RANDOM
         distance_random, tour_random = run_algorithm(
             "random_tour",
@@ -92,9 +92,6 @@ if __name__ == "__main__":
             show_each_iteration
         )
         
-        if show_each_iteration:
-            generate_timelapse(f"random/{currentCity}", f"{currentCity}/{currentCity}_random_tour")
-        
         # NEAREST NEIGHBOUR
         distance_NN, tour_NN = run_algorithm(
             "nn",
@@ -106,10 +103,7 @@ if __name__ == "__main__":
             nodes,
             show_each_iteration
         )
-        
-        if show_each_iteration:
-            generate_timelapse(f"nn/{currentCity}", f"{currentCity}/{currentCity}_nn_tour")
-
+  
         # GREEDY
         distance_greedy, tour_greedy = run_algorithm(
             "greedy",
@@ -121,9 +115,6 @@ if __name__ == "__main__":
             nodes,
             show_each_iteration,
         )
-        
-        if show_each_iteration:
-            generate_timelapse(f"greedy/{currentCity}", f"{currentCity}/{currentCity}_greedy_tour")
 
         display_table(cols, data, currentCity, "table_initial")
 
@@ -144,10 +135,7 @@ if __name__ == "__main__":
             random_tour,
             show_each_iteration
         )
-
-        if show_each_iteration:
-            generate_timelapse(f"two_opt_random_tour/{currentCity}", f"{currentCity}/{currentCity}_two_opt_random_tour")
-
+            
         # NEAREST NEIGHBOUR
         distance_two_opt_nn, tour_two_opt_nn = run_algorithm(
             "two_opt_nn",
@@ -161,9 +149,6 @@ if __name__ == "__main__":
             show_each_iteration
         )
 
-        if show_each_iteration:
-            generate_timelapse(f"two_opt_nearest_neighbour/{currentCity}", f"{currentCity}/{currentCity}_two_opt_nn_tour")
-
         # GREEDY
         distance_two_opt_greedy, tour_two_opt_greedy = run_algorithm(
             "two_opt_greedy",
@@ -176,9 +161,6 @@ if __name__ == "__main__":
             greedy_insertion,
             show_each_iteration
         )
-
-        if show_each_iteration:
-            generate_timelapse(f"two_opt_greedy_insertion/{currentCity}", f"{currentCity}/{currentCity}_two_opt_greedy_tour")
 
         display_table(cols, data, currentCity, "table_local_search")
         
@@ -200,11 +182,6 @@ if __name__ == "__main__":
             random_tour,
             show_each_iteration
         )
-
-        if show_each_iteration:
-            generate_timelapse(f"double_bridge_random_tour/{currentCity}", f"{currentCity}/{currentCity}_double_brigde_random_tour")
-
-        
         
         # NEAREST NEIGHBOUR
         distance_double_bridge_nn, double_bridge_opt_nn = run_algorithm(
@@ -219,9 +196,6 @@ if __name__ == "__main__":
             show_each_iteration
         )
 
-        if show_each_iteration:
-            generate_timelapse(f"double_bridge_nearest_neighbour/{currentCity}", f"{currentCity}/{currentCity}_double_brigde_nn")
-
         # GREEDY
         distance_double_bridge_greedy, tour_double_bridge_greedy = run_algorithm(
             "double_bridge_greedy",
@@ -235,8 +209,17 @@ if __name__ == "__main__":
             show_each_iteration
         )
 
-        if show_each_iteration:
-            generate_timelapse(f"double_bridge_greedy_insertion/{currentCity}", f"{currentCity}/{currentCity}_double_brigde_greedy")
-
         display_table(cols, data, currentCity, "table_iterated_local_search")
+
+        ########################## TIMELAPSE ##########################
+        # generate_timelapse(f"random/{currentCity}", f"{currentCity}/{currentCity}_random_tour")
+        # generate_timelapse(f"nn/{currentCity}", f"{currentCity}/{currentCity}_nn_tour")
+        # generate_timelapse(f"greedy/{currentCity}", f"{currentCity}/{currentCity}_greedy_tour")
+        # generate_timelapse(f"two_opt_random_tour/{currentCity}", f"{currentCity}/{currentCity}_two_opt_random_tour")
+        # generate_timelapse(f"two_opt_nearest_neighbour/{currentCity}", f"{currentCity}/{currentCity}_two_opt_nn_tour")
+        # generate_timelapse(f"two_opt_greedy_insertion/{currentCity}", f"{currentCity}/{currentCity}_two_opt_greedy_tour")
+        # generate_timelapse(f"double_bridge_random_tour/{currentCity}", f"{currentCity}/{currentCity}_double_brigde_random_tour")
+        # generate_timelapse(f"double_bridge_nearest_neighbour/{currentCity}", f"{currentCity}/{currentCity}_double_brigde_nn")
+        # generate_timelapse(f"double_bridge_greedy_insertion/{currentCity}", f"{currentCity}/{currentCity}_double_brigde_greedy")
+
 
