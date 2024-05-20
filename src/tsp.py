@@ -50,7 +50,7 @@ def run_algorithm(name, current_city, save_graph, show_on_screen, algorithm_func
 if __name__ == "__main__":
 
     # cities = [ "berlin52", "ch130", "tsp225", "pcb442", "pr1002"]
-    cities = ["berlin52"]
+    cities = ["ch130"]
     # cities = []
     
     for currentCity in cities:
