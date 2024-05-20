@@ -1,7 +1,7 @@
 from utils.graficar import graficar_ciudades, graficar_recorrido
 
 
-def nearest_neighbour(matriz_distancia, ciudades, nodo_inicial=0, guardar=False):
+def nearest_neighbour(matriz_distancia, ciudades, show_iterations = False, current_city = "", nodo_inicial=0):
     """
     Método exacto para la resolución del problema del agente viajero (TSP).
 
@@ -53,8 +53,13 @@ def nearest_neighbour(matriz_distancia, ciudades, nodo_inicial=0, guardar=False)
         # El nodo más cercano se agrega al recorrido y se marca como visitado
         ruta.append(sig_nodo)
         visitados.add(sig_nodo)
-        if guardar:
-            graficar_recorrido(ruta, ciudades, f"NN iter{iter}", False)
+        if show_iterations:
+            graficar_recorrido(
+                ruta, 
+                ciudades, 
+                f"nn/{current_city}" , 
+                f"{current_city}_nn_tour_iter_{iter}", 
+                False)
         iter += 1
 
     # Agrega el nodo inicial al final de la ruta para completar el ciclo.

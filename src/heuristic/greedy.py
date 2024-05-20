@@ -1,7 +1,7 @@
 from utils.graficar import graficar_ciudades, graficar_recorrido
 
 
-def greedy_insertion(matriz_distancia, ciudades, nodo_inicial=0, guardar=False):
+def greedy_insertion(matriz_distancia, ciudades, show_iterations = False, current_city = "", nodo_inicial=0):
     """
     Heurística Greedy Insertion (también llamada cheapest insertion) para la
     resolución del problema del agente viajero (TSP).
@@ -40,10 +40,16 @@ def greedy_insertion(matriz_distancia, ciudades, nodo_inicial=0, guardar=False):
         )
         ruta.insert(posicion_insertar, sig_nodo)
         no_visitados.remove(sig_nodo)
-        if guardar:
+        if show_iterations:
             # Genera una imagen por iteracion,
             # mostrando como se van agregando los nodos a la ruta.
-            graficar_recorrido(ruta, ciudades, f"GI iter{iter}", False)
+            graficar_recorrido(
+                ruta, 
+                ciudades,
+                f"greedy/{current_city}" , 
+                f"{current_city}_greedy_tour_iter_{iter}", 
+                False
+            )
         iter += 1
 
     # Calcula la distancia total de la ruta

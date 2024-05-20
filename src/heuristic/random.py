@@ -1,7 +1,8 @@
 import random
+from utils.graficar import graficar_recorrido
 
 
-def random_tour(distance_matrix, cities):
+def random_tour(distance_matrix, cities, save_iterations = False, current_city = ""):
     """
     Genera una ruta aleatoria para la resolución del problema del agente viajero (TSP).
 
@@ -35,6 +36,7 @@ def random_tour(distance_matrix, cities):
     non_visited = set([i for i in range(n)])
     non_visited = non_visited - visited
 
+    i = 0
     while len(visited) < n:
 
         # Seleccionar aleatoriamente el siguiente nodo de la ruta
@@ -42,6 +44,17 @@ def random_tour(distance_matrix, cities):
         tour.append(next_node)
         visited.add(next_node)
         non_visited = non_visited - set([next_node])
+
+        if save_iterations:
+            graficar_recorrido(
+                tour, 
+                cities, 
+                f"random/{current_city}" , 
+                f"{current_city}_random_tour_iter_{i}", 
+                False
+            )
+            
+        i += 1
 
     # Agregar el nodo inicial al final de la ruta para completar el ciclo
     tour.append(initial_node)

@@ -20,7 +20,7 @@ def graficar_ciudades(cities, title="Ciudades", mostrar=True):
 
 
 # Utilidad para graficar el recorrido de las ciudades en un plano.
-def graficar_recorrido(path, cities, title="Recorrido", mostrar=False):
+def graficar_recorrido(path, cities, file_path, file_name, mostrar=False):
 
     plt.scatter(
         [city[0] for city in cities],
@@ -35,10 +35,10 @@ def graficar_recorrido(path, cities, title="Recorrido", mostrar=False):
         zorder=-1,
     )
 
-    plt.title(title)
+    plt.title(file_name)
 
     plt.axis("off")
-    plt.savefig(f"../img/{title}.png")
+    plt.savefig(f"../img/{file_path}/{file_name}.png")
     if mostrar:
         plt.show()
     plt.close()

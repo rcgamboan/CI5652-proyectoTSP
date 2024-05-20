@@ -9,6 +9,9 @@ FILE_NAMES = {
     "two_opt_random": "2_opt_random_",
     "two_opt_nn": "2_opt_nn_",
     "two_opt_greedy": "2_opt_greedy_",
+    "double_bridge_random": "2_bridge_random_",
+    "double_bridge_nn": "2_bridge_nn_",
+    "double_bridge_greedy": "2_bridge_greedy_",
 }
 
 LABEL_NAMES = {
@@ -18,9 +21,12 @@ LABEL_NAMES = {
     "nn_ite": "Nearest N Iterado",
     "greedy": "Greddy",
     "greedy_ite": "Greddy Iterado",
-    "two_opt_random": "2-opt Random",
+    "two_opt_random": "2-opt Aleatorio",
     "two_opt_nn": "2-opt Nearest N",
     "two_opt_greedy": "2-opt Greedy",
+    "double_bridge_random": "2-bridge Aleatorio",
+    "double_bridge_nn": "2-bridge Nearest N",
+    "double_bridge_greedy": "2-bridge Greedy",
     "table_initial": "Camino Inicial",
     "table_local_search": "Busqueda local",
     "table_iterated_local_search": "Busqueda Local Iterativa",

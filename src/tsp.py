@@ -6,6 +6,7 @@
 # Roberto Gamboa, 16-10394
 
 import time
+from utils.generate_timelapse import generate_timelapse
 from utils.file_names import FILE_NAMES, LABEL_NAMES
 from utils.graficar import graficar_ciudades, graficar_recorrido
 from utils.display_table import display_table
@@ -21,12 +22,12 @@ from heuristic.two_opt import two_opt_local_search
 from heuristic.double_bridge import iterative_local_search
 
 
-def run_algorithm(name, save_graph, show_on_screen, algorithm_func, *args):
+def run_algorithm(name, current_city, save_graph, show_on_screen, algorithm_func, *args):
 
     cols.append(name)
 
     start_time = time.time()
-    result = algorithm_func(*args)
+    result = algorithm_func(*args, current_city)
     end_time = time.time()
 
     execution_time = round(end_time - start_time, 5)
@@ -40,9 +41,9 @@ def run_algorithm(name, save_graph, show_on_screen, algorithm_func, *args):
 
     if save_graph:
         graficar_recorrido(
-            tour, nodes, f"{FILE_NAMES[name]}{currentCity}", show_on_screen
+            tour, nodes, "", f"{FILE_NAMES[name]}{current_city}", show_on_screen
         )
-
+    
     return result
 
 
@@ -50,7 +51,8 @@ if __name__ == "__main__":
 
     # cities = [ "berlin52", "ch130", "tsp225", "pcb442", "pr1002"]
     cities = ["berlin52"]
-
+    # cities = []
+    
     for currentCity in cities:
 
         cols = ["best_tour"]
@@ -70,7 +72,7 @@ if __name__ == "__main__":
 
         graficar_ciudades(nodes, currentCity, show_on_screen)
         graficar_recorrido(
-            best_tour, nodes, f"{FILE_NAMES["best_tour"]}{currentCity}", show_on_screen
+            best_tour, nodes, "", f"{FILE_NAMES["best_tour"]}{currentCity}", show_on_screen
         )
 
         ########################## INITIAL TOUR ##########################
@@ -81,131 +83,164 @@ if __name__ == "__main__":
         # RANDOM
         distance_random, tour_random = run_algorithm(
             "random_tour",
+            currentCity,
             save_graph,
             show_on_screen,
             random_tour,
             distance_matrix,
             nodes,
+            show_each_iteration
         )
-
+        
+        if show_each_iteration:
+            generate_timelapse(f"random/{currentCity}", f"{currentCity}/{currentCity}_random_tour")
+        
         # NEAREST NEIGHBOUR
         distance_NN, tour_NN = run_algorithm(
             "nn",
+            currentCity,
             save_graph,
             show_on_screen,
             nearest_neighbour,
             distance_matrix,
             nodes,
-            0,
-            show_each_iteration,
+            show_each_iteration
         )
-
-        # distance_NN_iteration, tour_NN_iteration = run_algorithm(
-        #     "nn_ite",
-        #     save_graph,
-        #     show_on_screen,
-        #     nearest_neighbour_mejor_inicio,
-        #     distance_matrix,
-        #     nodes
-        # )
+        
+        if show_each_iteration:
+            generate_timelapse(f"nn/{currentCity}", f"{currentCity}/{currentCity}_nn_tour")
 
         # GREEDY
         distance_greedy, tour_greedy = run_algorithm(
             "greedy",
+            currentCity,
             save_graph,
             show_on_screen,
             greedy_insertion,
             distance_matrix,
             nodes,
-            0,
             show_each_iteration,
         )
-
-        # distance_greedy_iteration, tour_greedy_iteration = run_algorithm(
-        #     "greedy_ite",
-        #     save_graph,
-        #     show_on_screen,
-        #     greedy_insertion_mejor_inicio,
-        #     distance_matrix,
-        #     nodes
-        # )
+        
+        if show_each_iteration:
+            generate_timelapse(f"greedy/{currentCity}", f"{currentCity}/{currentCity}_greedy_tour")
 
         display_table(cols, data, currentCity, "table_initial")
 
         ########################## LOCAL SEARCH ##########################
+        cols = ["best_tour"]
         data = []
         data.append([round(best_distance_tour, 2), "N/A", ""])
+        show_each_iteration = False
 
         # RANDOM
         distance_random, tour_random = run_algorithm(
             "two_opt_random",
+            currentCity,
             save_graph,
             show_on_screen,
             two_opt_local_search,
             distance_matrix,
             nodes,
             random_tour,
+            show_each_iteration
         )
+
+        if show_each_iteration:
+            generate_timelapse(f"two_opt_random_tour/{currentCity}", f"{currentCity}/{currentCity}_two_opt_random_tour")
 
         # NEAREST NEIGHBOUR
         distance_two_opt_nn, tour_two_opt_nn = run_algorithm(
             "two_opt_nn",
+            currentCity,
             save_graph,
             show_on_screen,
             two_opt_local_search,
             distance_matrix,
             nodes,
             nearest_neighbour,
+            show_each_iteration
         )
+
+        if show_each_iteration:
+            generate_timelapse(f"two_opt_nearest_neighbour/{currentCity}", f"{currentCity}/{currentCity}_two_opt_nn_tour")
 
         # GREEDY
         distance_two_opt_greedy, tour_two_opt_greedy = run_algorithm(
             "two_opt_greedy",
+            currentCity,
             save_graph,
             show_on_screen,
             two_opt_local_search,
             distance_matrix,
             nodes,
             greedy_insertion,
+            show_each_iteration
         )
+
+        if show_each_iteration:
+            generate_timelapse(f"two_opt_greedy_insertion/{currentCity}", f"{currentCity}/{currentCity}_two_opt_greedy_tour")
 
         display_table(cols, data, currentCity, "table_local_search")
+        
 
         ########################## ITERATED LOCAL SEARCH ##########################
+        cols = ["best_tour"]
         data = []
         data.append([round(best_distance_tour, 2), "N/A", ""])
+        show_each_iteration = False
 
         # RANDOM
-        distance_random, tour_random = run_algorithm(
-            "two_opt_random",
+        distance_double_bridge_random, tour_double_bridge_random = run_algorithm(
+            "double_bridge_random",
+            currentCity,
             save_graph,
             show_on_screen,
             iterative_local_search,
             distance_matrix,
             nodes,
             random_tour,
+            show_each_iteration
         )
 
+        if show_each_iteration:
+            generate_timelapse(f"double_bridge_random_tour/{currentCity}", f"{currentCity}/{currentCity}_double_brigde_random_tour")
+
+        
+        
         # NEAREST NEIGHBOUR
-        distance_two_opt_nn, tour_two_opt_nn = run_algorithm(
-            "two_opt_nn",
+        distance_double_bridge_nn, double_bridge_opt_nn = run_algorithm(
+            "double_bridge_nn",
+            currentCity,
             save_graph,
             show_on_screen,
             iterative_local_search,
             distance_matrix,
             nodes,
             nearest_neighbour,
+            show_each_iteration
         )
 
+        if show_each_iteration:
+            generate_timelapse(f"double_bridge_nearest_neighbour/{currentCity}", f"{currentCity}/{currentCity}_double_brigde_nn")
+
         # GREEDY
-        distance_two_opt_greedy, tour_two_opt_greedy = run_algorithm(
-            "two_opt_greedy",
+        distance_double_bridge_greedy, tour_double_bridge_greedy = run_algorithm(
+            "double_bridge_greedy",
+            currentCity,
             save_graph,
             show_on_screen,
             iterative_local_search,
             distance_matrix,
             nodes,
             greedy_insertion,
+            show_each_iteration
         )
 
+        if show_each_iteration:
+            generate_timelapse(f"double_bridge_greedy_insertion/{currentCity}", f"{currentCity}/{currentCity}_double_brigde_greedy")
+
+
         display_table(cols, data, currentCity, "table_iterated_local_search")
+
+        break

@@ -2,7 +2,7 @@ from utils.graficar import graficar_ciudades, graficar_recorrido
 from heuristic.nearest_neighbour import nearest_neighbour
 
 
-def two_opt_local_search(distance_matrix, city, algorithm_func):
+def two_opt_local_search(distance_matrix, city, algorithm_func, show_iterations = False, current_city = ""):
     """
     Búsqueda local para la resolución del problema del agente viajero (TSP).
 
@@ -30,10 +30,11 @@ def two_opt_local_search(distance_matrix, city, algorithm_func):
     """
 
     n = len(distance_matrix)
-
+   
     distance, tour = algorithm_func(distance_matrix, city)
 
     improved = True
+    itr = 0
     while improved:
 
         improved = False
@@ -62,8 +63,15 @@ def two_opt_local_search(distance_matrix, city, algorithm_func):
                     improved = True
 
                     # Dibujar la nueva ruta
-                    # graficar_recorrido(tour, city, f"NN iter", True)
-
+                    if show_iterations:
+                        graficar_recorrido(
+                            tour, 
+                            city, 
+                            f"two_opt_{algorithm_func.__name__}/{current_city}" , 
+                            f"{current_city}_two_opt_{algorithm_func.__name__}_iter_{itr}", 
+                            False
+                        )
+                itr += 1
     # Calcular la distancia total de la ruta
     distancia_total = sum(distance_matrix[tour[i]][tour[i + 1]] for i in range(n))
 
