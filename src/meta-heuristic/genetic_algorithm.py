@@ -273,12 +273,12 @@ def run_ga(cities_coords, distance_matrix, population_size, numGenerations,cross
 ##### Parametros del algoritmo genetico
 
 # Tamaño de la poblacion
-population_size = 300
+population_size = [100, 200, 300]
 # Tasa de cruce, es decir, la proporcion de individuos seleccionados de la poblacion
 # en cada generacion para el cruce
-crossover_rate = 0.7
+crossover_rate = [0.5, 0.7, 0.9]
 # Tasa de mutacion, es decir, la probabilidad de que ocurra una mutacion
-mutation_rate = 0.2
+mutation_rate = [0.2, 0.4, 0.6]
 # Numero de generaciones, es decir, el numero de iteraciones del algoritmo genetico
 numGenerations = 200
 
@@ -297,9 +297,16 @@ cities_names = [
     "rbz43748",
     "sra104815"]
 
-for i in range(len(cities_names)):
+# Ciclo para obtener los datos de las ciudades y ejecutar el algoritmo genetico
+# Se ejecuta el algoritmo genetico para las primeras 5 ciudades de la lista cities_names
+for i in range(len(cities_names[0:5])):
     # Se obtienen las coordenadas de las ciudades
     cities_coords = obtener_ciudades(f"../../doc/Benchmarks/{cities_names[i]}.tsp")
+
+    # Se crea el archivo txt donde se almacenaran los resultados
+    # de la ciudad, si ya existe, se sobreescribe
+    with open(f"./solutions/{cities_names[i]}.txt", "w") as text_file:
+        text_file.write(f"Running GA with {cities_names[i]} data \n\n")
 
     # Se calcula la matriz de distancias
     distance_matrix = np.array(calcular_distancia(cities_coords))
@@ -308,29 +315,50 @@ for i in range(len(cities_names)):
     # Las imagenes se guardan actualmente en la carpeta gens del directorio actual
     save_every_10_gen = False
     
-    print(f"Running GA for {cities_names[i]}")
-    # Se ejecuta el algoritmo genetico con los parametros especificados
-    ga_solution = run_ga(cities_coords, 
-                        distance_matrix, 
-                        population_size,
-                        numGenerations, 
-                        crossover_rate, 
-                        mutation_rate, 
-                        save_every_10_gen)
+    # Se ejecuta para cada ciudad el algorithm genetico con los parametros especificados
+    iter = 1
+    for j in range(len(population_size)):
+        for k in range(len(crossover_rate)):
+            for l in range(len(mutation_rate)):
+                print(f"\nRunning GA for {cities_names[i]} (iter {iter}/27)")
+                print(f"Num generations: {numGenerations}")
+                print(f"Population size: {population_size[j]}")
+                print(f"Crossover rate: {crossover_rate[k]}")
+                print(f"Mutation rate: {mutation_rate[l]}")
+                # Se ejecuta el algoritmo genetico con los parametros especificados
+                ga_solution = run_ga(cities_coords, 
+                                    distance_matrix, 
+                                    population_size[j],
+                                    numGenerations, 
+                                    crossover_rate[k], 
+                                    mutation_rate[l], 
+                                    save_every_10_gen)
 
-    # Al finalizar el algoritmo genetico, se tiene una poblacion de soluciones
-    # Se calcula la distancia total de cada solucion y se selecciona la mejor
-    population_dist = []
-    for j in range(0, population_size):
-        population_dist.append(calculate_total_distance(ga_solution[j],distance_matrix))
+                # Al finalizar el algoritmo genetico, se tiene una poblacion de soluciones
+                # Se calcula la distancia total de cada solucion y se selecciona la mejor
+                population_dist = []
+                for z in range(population_size[j]):
+                    population_dist.append(calculate_total_distance(ga_solution[z],distance_matrix))
 
-    index_minimum = np.argmin(population_dist)
-    shortest_path = ga_solution[index_minimum]
-    minimum_distance = min(population_dist)
+                index_minimum = np.argmin(population_dist)
+                shortest_path = ga_solution[index_minimum]
+                minimum_distance = min(population_dist)
 
-    # Mostrar el grafico de la mejor obtenida por el algoritmo genetico
-    show_best_route = False
-    plot_path(cities_coords,shortest_path, minimum_distance, f"{cities_names[i]}_best_route",show_best_route)
-    print(f"saved {cities_names[i]} best route graph in ../../img/genetic-algorithm/{cities_names[i]}_best_route.png")
+                with open(f"./solutions/{cities_names[i]}.txt", "a") as text_file:
+                    text_file.write(f"population_size = {population_size[j]}\n")
+                    text_file.write(f"crossover_rate = {crossover_rate[k]}\n")
+                    text_file.write(f"mutation_rate = {mutation_rate[l]}\n")
+                    text_file.write(f"minimum_distance = {minimum_distance}\n")
+                    text_file.write(f"avg_distance = {np.mean(population_dist)}\n")
+                    text_file.write("---------------------------------------------\n\n")
+                print(f"saved solution data in ./solutions/{cities_names[i]}.txt")
 
-    print(f"{cities_names[i]} minimum distance using GA : {minimum_distance}\n")
+                # Mostrar el grafico de la mejor obtenida por el algoritmo genetico
+                show_best_route = False
+                #plot_path(cities_coords,shortest_path, minimum_distance, f"{cities_names[i]}_best_route",show_best_route)
+                #print(f"saved {cities_names[i]} best route graph in ../../img/genetic-algorithm/{cities_names[i]}_best_route.png")
+                plot_path(cities_coords,shortest_path, minimum_distance, f"{cities_names[i]}_ps{population_size[j]}_cr{crossover_rate[k]}_mr{mutation_rate[l]}",show_best_route)
+                print(f"saved {cities_names[i]} best route graph in ../../img/genetic-algorithm/{cities_names[i]}_ps{population_size[j]}_cr{crossover_rate[k]}_mr{mutation_rate[l]}.png")
+                iter += 1
+
+                #print(f"{cities_names[i]} minimum distance using GA : {minimum_distance}\n")
