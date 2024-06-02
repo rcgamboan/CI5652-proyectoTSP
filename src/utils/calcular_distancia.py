@@ -19,3 +19,13 @@ def calcular_distancia(cities):
 def calcular_costo_ruta(ruta, distances):
     distance = sum(distances[ruta[i - 1]][ruta[i]] for i in range(len(distances) + 1))
     return distance
+
+def calculate_total_distance(tour, distance_matrix):
+    """
+    Calcula la distancia total de un recorrido.
+    """
+    total_distance = 0
+    for i in range(len(tour)):
+        # Agrega la distancia entre la actual ciudad y la siguiente ciudad
+        total_distance += distance_matrix[tour[i]][tour[(i + 1) % len(tour)]]
+    return total_distance
