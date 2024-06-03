@@ -1,0 +1,162 @@
+Running GA with pr2392 data 
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 14746950.713422373
+avg_distance = 15074492.092238557
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 14829022.172509115
+avg_distance = 15046341.678550448
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 14859034.46596847
+avg_distance = 15089466.704262028
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 14858594.726220727
+avg_distance = 15116868.539763482
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 14723552.063647376
+avg_distance = 14989844.190609772
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 14765182.034301128
+avg_distance = 15100583.728031106
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 14908140.462811204
+avg_distance = 15096901.421880594
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 14756482.380682133
+avg_distance = 15103352.204932278
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 14741358.47303377
+avg_distance = 15036487.603486609
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 14321620.811902469
+avg_distance = 14514451.366296439
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 14203709.858836247
+avg_distance = 14437680.70254119
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 13946959.73868687
+avg_distance = 14231443.38437989
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 14195709.978300536
+avg_distance = 14441489.58060674
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 13933523.479074117
+avg_distance = 14233756.218668092
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 13952287.388429187
+avg_distance = 14258291.463333324
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 14103673.291398993
+avg_distance = 14401029.293151066
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 14093868.107525337
+avg_distance = 14343042.41300589
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 13808461.025356015
+avg_distance = 14105839.205662346
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 14209339.031082096
+avg_distance = 14445783.843295302
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 13807196.789922928
+avg_distance = 14112518.840823954
+---------------------------------------------
+

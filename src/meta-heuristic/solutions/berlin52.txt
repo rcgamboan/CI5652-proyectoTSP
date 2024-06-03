@@ -1,0 +1,650 @@
+Running GA with berlin52 data 
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 25540.972218105744
+avg_distance = 28279.768295310892
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 24837.478984398105
+avg_distance = 28492.6645418975
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 24190.05374772278
+avg_distance = 28200.76912286881
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 25000.09170212551
+avg_distance = 28366.042537159432
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 24347.590458024482
+avg_distance = 28233.528434824126
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 25337.758528256538
+avg_distance = 28320.84070225264
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 25776.210610380072
+avg_distance = 28058.95085422789
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 25992.814861177918
+avg_distance = 28782.63477842575
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 25235.04592242798
+avg_distance = 28373.479883308435
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 19010.58390206809
+avg_distance = 21796.911504542477
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 18788.59530186526
+avg_distance = 21186.585375835737
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 18286.636226584975
+avg_distance = 21129.97033293901
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 20003.412771065
+avg_distance = 22828.022455131468
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 18333.302645266787
+avg_distance = 21101.157764569256
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 16660.076022882095
+avg_distance = 19876.802558960473
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 19614.751325529625
+avg_distance = 22501.220903537273
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 17997.45498899761
+avg_distance = 22458.587023547647
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 20089.971789631003
+avg_distance = 22594.945627107947
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 16578.052711697175
+avg_distance = 19667.571788423375
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 14337.934523575153
+avg_distance = 17424.66160994789
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 14283.186479352435
+avg_distance = 17817.68540512325
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.4
+minimum_distance = 17151.63200268617
+avg_distance = 19961.047242784276
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.4
+minimum_distance = 15573.201030718184
+avg_distance = 18614.76733547496
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.4
+minimum_distance = 13993.319072243909
+avg_distance = 17260.537875223807
+---------------------------------------------
+
+num_generations = 100
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.6
+minimum_distance = 16702.634876065516
+avg_distance = 19984.547213521848
+---------------------------------------------
+
+num_generations = 150
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.6
+minimum_distance = 14985.163433468033
+avg_distance = 18247.576675054683
+---------------------------------------------
+
+num_generations = 200
+population_size = 100
+crossover_rate = 0.9
+mutation_rate = 0.6
+minimum_distance = 15556.61994879252
+avg_distance = 18887.049821161916
+---------------------------------------------
+
+num_generations = 100
+population_size = 150
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 24887.42106962998
+avg_distance = 27914.495855699362
+---------------------------------------------
+
+num_generations = 150
+population_size = 150
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 25129.563422327526
+avg_distance = 28131.611439418357
+---------------------------------------------
+
+num_generations = 200
+population_size = 150
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 25440.97949125049
+avg_distance = 28587.584274079898
+---------------------------------------------
+
+num_generations = 100
+population_size = 150
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 24015.05720988594
+avg_distance = 28921.44880923158
+---------------------------------------------
+
+num_generations = 150
+population_size = 150
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 22961.946504805244
+avg_distance = 28671.705380591196
+---------------------------------------------
+
+num_generations = 200
+population_size = 150
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 24658.214313996912
+avg_distance = 27834.163798922444
+---------------------------------------------
+
+num_generations = 100
+population_size = 150
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 24105.6372337892
+avg_distance = 27895.260843602377
+---------------------------------------------
+
+num_generations = 150
+population_size = 150
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 25551.68426759159
+avg_distance = 28362.15216737034
+---------------------------------------------
+
+num_generations = 200
+population_size = 150
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 25510.330238932216
+avg_distance = 28531.821030073625
+---------------------------------------------
+
+num_generations = 100
+population_size = 150
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 18125.17218078668
+avg_distance = 21173.94790298911
+---------------------------------------------
+
+num_generations = 150
+population_size = 150
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 17434.447562900965
+avg_distance = 20452.509946500242
+---------------------------------------------
+
+num_generations = 200
+population_size = 150
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 16483.125212742798
+avg_distance = 19549.318598357782
+---------------------------------------------
+
+num_generations = 100
+population_size = 150
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 17436.095089441238
+avg_distance = 21218.717705647177
+---------------------------------------------
+
+num_generations = 150
+population_size = 150
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 18231.639043973722
+avg_distance = 21263.176785021493
+---------------------------------------------
+
+num_generations = 200
+population_size = 150
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 17049.976938531825
+avg_distance = 20256.983746704653
+---------------------------------------------
+
+num_generations = 100
+population_size = 150
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 18540.711546886454
+avg_distance = 22406.491915225106
+---------------------------------------------
+
+num_generations = 150
+population_size = 150
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 18062.53609559825
+avg_distance = 21774.582105528123
+---------------------------------------------
+
+num_generations = 200
+population_size = 150
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 19366.672317873614
+avg_distance = 22817.87154870651
+---------------------------------------------
+
+num_generations = 100
+population_size = 150
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 15559.42088931382
+avg_distance = 18504.610885840873
+---------------------------------------------
+
+num_generations = 150
+population_size = 150
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 16417.143724200138
+avg_distance = 19198.507473785663
+---------------------------------------------
+
+num_generations = 200
+population_size = 150
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 13583.187963832175
+avg_distance = 16852.091523881754
+---------------------------------------------
+
+num_generations = 100
+population_size = 150
+crossover_rate = 0.9
+mutation_rate = 0.4
+minimum_distance = 14330.866950428379
+avg_distance = 18008.479487771496
+---------------------------------------------
+
+num_generations = 150
+population_size = 150
+crossover_rate = 0.9
+mutation_rate = 0.4
+minimum_distance = 14064.304760013456
+avg_distance = 17582.964266775063
+---------------------------------------------
+
+num_generations = 200
+population_size = 150
+crossover_rate = 0.9
+mutation_rate = 0.4
+minimum_distance = 12599.680218860629
+avg_distance = 16210.001307659342
+---------------------------------------------
+
+num_generations = 100
+population_size = 150
+crossover_rate = 0.9
+mutation_rate = 0.6
+minimum_distance = 15265.954923110487
+avg_distance = 19046.0309725707
+---------------------------------------------
+
+num_generations = 150
+population_size = 150
+crossover_rate = 0.9
+mutation_rate = 0.6
+minimum_distance = 12912.194661231837
+avg_distance = 16339.65590208891
+---------------------------------------------
+
+num_generations = 200
+population_size = 150
+crossover_rate = 0.9
+mutation_rate = 0.6
+minimum_distance = 12928.511049946484
+avg_distance = 16540.578497644226
+---------------------------------------------
+
+num_generations = 100
+population_size = 200
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 23783.334183480412
+avg_distance = 28110.71474328073
+---------------------------------------------
+
+num_generations = 150
+population_size = 200
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 23441.024614901944
+avg_distance = 28134.09464081894
+---------------------------------------------
+
+num_generations = 200
+population_size = 200
+crossover_rate = 0.5
+mutation_rate = 0.2
+minimum_distance = 24361.19690347631
+avg_distance = 28001.241722009796
+---------------------------------------------
+
+num_generations = 100
+population_size = 200
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 25143.72094188378
+avg_distance = 28413.825260395817
+---------------------------------------------
+
+num_generations = 150
+population_size = 200
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 24452.97590179075
+avg_distance = 28855.632012104412
+---------------------------------------------
+
+num_generations = 200
+population_size = 200
+crossover_rate = 0.5
+mutation_rate = 0.4
+minimum_distance = 24797.62281651544
+avg_distance = 28544.388772494378
+---------------------------------------------
+
+num_generations = 100
+population_size = 200
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 24679.254614589157
+avg_distance = 28039.457497125826
+---------------------------------------------
+
+num_generations = 150
+population_size = 200
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 25568.573411231155
+avg_distance = 28453.123130160086
+---------------------------------------------
+
+num_generations = 200
+population_size = 200
+crossover_rate = 0.5
+mutation_rate = 0.6
+minimum_distance = 24177.93266641967
+avg_distance = 27987.10858350585
+---------------------------------------------
+
+num_generations = 100
+population_size = 200
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 17297.21092349473
+avg_distance = 20437.399933810582
+---------------------------------------------
+
+num_generations = 150
+population_size = 200
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 15961.99588132936
+avg_distance = 19401.590896242302
+---------------------------------------------
+
+num_generations = 200
+population_size = 200
+crossover_rate = 0.7
+mutation_rate = 0.2
+minimum_distance = 17171.11594202344
+avg_distance = 20032.929187692596
+---------------------------------------------
+
+num_generations = 100
+population_size = 200
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 16810.093098261317
+avg_distance = 20566.750872150566
+---------------------------------------------
+
+num_generations = 150
+population_size = 200
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 18870.72390182755
+avg_distance = 22001.68817883891
+---------------------------------------------
+
+num_generations = 200
+population_size = 200
+crossover_rate = 0.7
+mutation_rate = 0.4
+minimum_distance = 14283.1516277442
+avg_distance = 17821.45757237117
+---------------------------------------------
+
+num_generations = 100
+population_size = 200
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 20666.84340523962
+avg_distance = 23513.77767372486
+---------------------------------------------
+
+num_generations = 150
+population_size = 200
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 18014.377300324213
+avg_distance = 21737.28328662203
+---------------------------------------------
+
+num_generations = 200
+population_size = 200
+crossover_rate = 0.7
+mutation_rate = 0.6
+minimum_distance = 17181.010867332552
+avg_distance = 20787.620114829297
+---------------------------------------------
+
+num_generations = 100
+population_size = 200
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 15336.357302773216
+avg_distance = 18587.714652038725
+---------------------------------------------
+
+num_generations = 150
+population_size = 200
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 15611.392816068961
+avg_distance = 18636.943431530628
+---------------------------------------------
+
+num_generations = 200
+population_size = 200
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 13665.72407810182
+avg_distance = 17049.8390750402
+---------------------------------------------
+
+num_generations = 100
+population_size = 200
+crossover_rate = 0.9
+mutation_rate = 0.4
+minimum_distance = 14184.578962204609
+avg_distance = 17993.311921737946
+---------------------------------------------
+
+num_generations = 150
+population_size = 200
+crossover_rate = 0.9
+mutation_rate = 0.4
+minimum_distance = 12863.627139854503
+avg_distance = 16454.764559250543
+---------------------------------------------
+
+num_generations = 200
+population_size = 200
+crossover_rate = 0.9
+mutation_rate = 0.4
+minimum_distance = 11944.962325094923
+avg_distance = 15628.935656556214
+---------------------------------------------
+
+num_generations = 100
+population_size = 200
+crossover_rate = 0.9
+mutation_rate = 0.6
+minimum_distance = 15525.09953666088
+avg_distance = 18584.11398084124
+---------------------------------------------
+
+num_generations = 150
+population_size = 200
+crossover_rate = 0.9
+mutation_rate = 0.6
+minimum_distance = 12767.21712944568
+avg_distance = 16797.498106231094
+---------------------------------------------
+
+num_generations = 200
+population_size = 200
+crossover_rate = 0.9
+mutation_rate = 0.6
+minimum_distance = 12976.211853661738
+avg_distance = 16379.10173432814
+---------------------------------------------
+
