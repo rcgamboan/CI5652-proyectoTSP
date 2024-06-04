@@ -120,12 +120,10 @@ def roulette_selection(population, aptitude_probabilities):
     # Retorna el individuo seleccionado
     return population[selected_individual_index]
 
-def crossover(numCities, parents):
+def simple_crossover(numCities, parents):
 
     """
-    Operador de cruce para combinar dos padres.
-
-    Se utiliza la recombinacion de corte y llenado.
+    Operador de cruce para combinar dos padres utilizando la recombinacion de corte y llenado.
     El cruce combina los genotipos de dos padres para crear descendientes. 
     Se utiliza un punto de corte aleatorio para dividir los padres y generar dos descendientes.
     Se agrega a cada individuo los elementos faltantes del otro padre para completar la permutación.
@@ -144,29 +142,116 @@ def crossover(numCities, parents):
     """
     # Calcula el punto de corte aleatorio
     cut_index = round(random.uniform(1, len(numCities) - 1))
-
+    # cut and fill crossover
     # Lista que almacena los descendientes, se trabajará con dos descendientes inicialmente
     # La primera lista almacena el primer descendiente y la segunda lista almacena el segundo descendiente
-    offsprings = [[],[]]
+    offsprings1 = []
+    offsprings2 = []
     
     # Rellena los descendientes con los elementos de los padres desde el primero hasta el corte
     # En el caso del primero descendiente, se comienza llenando con los elementos del primer padre
     # y se termina con los elementos del segundo padre
-    offsprings[0] = parents[0][0:cut_index]
+    offsprings1 = parents[0][0:cut_index]
     for city in parents[1]:
-        if city not in offsprings[0]:
-            offsprings[0].append(city)
+        if city not in offsprings1:
+            offsprings1.append(city)
     
     # Rellena el segundo descendiente con los elementos del segundo padre hasta el corte
     # y lo termina con los elementos del primer padre
-    offsprings[1] = parents[1][0:cut_index]
+    offsprings2 = parents[1][0:cut_index]
     for city in parents[0]:
-        if city not in offsprings[1]:
-            offsprings[1].append(city)
+        if city not in offsprings2:
+            offsprings2.append(city)
 
-    return offsprings
+    return [offsprings1, offsprings2]
 
-def run_ga(cities_coords, distance_matrix, population_size, numGenerations,crossover_rate, mutation_rate, save_every_10_gen=False):
+def partially_mapped_crossover(numCities, parents):
+
+    # Se calculan dos puntos de corte aleatorios
+    c1, c2 = sorted(random.sample(range(len(numCities)), 2))
+    
+    offspring1 = [-1] * len(numCities)
+    offspring2 = [-1] * len(numCities)
+
+    offspring1[c1:c2] = parents[0][c1:c2]
+    offspring2[c1:c2] = parents[1][c1:c2]
+
+    for i in range(c1, c2):
+        if parents[1][i] not in offspring1:
+            j = i
+            while offspring1[j] != -1:
+                j = parents[1].index(parents[0][j])
+            offspring1[j] = parents[1][i]
+
+        if parents[0][i] not in offspring2:
+            j = i
+            while offspring2[j] != -1:
+                j = parents[0].index(parents[1][j])
+            offspring2[j] = parents[0][i]
+    
+    for i in range(len(numCities)):
+        if offspring1[i] == -1:
+            offspring1[i] = parents[1][i]
+        if offspring2[i] == -1:
+            offspring2[i] = parents[0][i]
+    
+    return [offspring1, offspring2]
+
+def swap_mutation(individual):
+    
+        """
+        Operador de mutación para intercambiar dos ciudades en un individuo.
+        La mutación intercambia dos ciudades aleatorias en un individuo.
+    
+        Parámetros:
+        ----------
+        individual (lista de ints): Individuo a ser mutado.
+    
+        Returns:
+        ------
+        mutated_individual (lista de ints): Individuo mutado.
+    
+        Complejidad de tiempo:
+        O(1).
+        """
+    
+        # Selecciona dos ciudades aleatorias para intercambiar
+        point1 = random.randint(0, len(individual) - 1)
+        point2 = random.randint(0, len(individual) - 1)
+    
+        # Intercambia las ciudades
+        individual[point1], individual[point2] = (individual[point2], individual[point1])
+    
+        return individual
+
+def inversion_mutation(individual):
+        
+        """
+        Operador de mutación para invertir un segmento de un individuo.
+        La mutación invierte un segmento de un individuo, seleccionando dos puntos de corte
+        aleatorios y revirtiendo el orden de las ciudades entre estos puntos.
+        
+        Parámetros:
+        ----------
+        individual (lista de ints): Individuo a ser mutado.
+        
+        Returns:
+        ------
+        mutated_individual (lista de ints): Individuo mutado.
+        
+        Complejidad de tiempo:
+        O(n), donde n es la cantidad de ciudades en el problema.
+        """
+        
+        # Selecciona dos puntos de corte aleatorios
+        c1, c2 = sorted(random.sample(range(len(individual)), 2))
+        
+        # Invierte el segmento entre los puntos de corte
+        individual[c1:c2] = individual[c1:c2][::-1]
+        
+        return individual
+
+def run_ga(cities_coords, distance_matrix, population_size, numGenerations,crossover_rate, mutation_rate, save_every_10_gen=False, crossover_method="pmx", mutation_method="inversion"):
     
     """
     Método para ejecutar el algoritmo genético (GA)
@@ -183,6 +268,8 @@ def run_ga(cities_coords, distance_matrix, population_size, numGenerations,cross
     crossover_rate (float): Proporción de individuos seleccionados para el cruce.
     mutation_rate (float): Probabilidad de aplicar la mutación a un individuo.
     save_every_10_gen (bool): Si se deben guardar en un grafico los resultados cada 10 generaciones.
+    crossover_method (str): Método de cruce a utilizar. Puede ser "pmx" o "simple".
+    mutation_method (str): Método de mutación a utilizar. Puede ser "inversion" o "swap".
 
     Returns:
     ------
@@ -200,7 +287,7 @@ def run_ga(cities_coords, distance_matrix, population_size, numGenerations,cross
     for generation in range(0, numGenerations+1):
         
         if (generation%10 == 0):
-            print("Generation: ", generation)
+            print("Generation ", generation)
         
         if generation == 0:
             selected_individuals = population
@@ -223,19 +310,19 @@ def run_ga(cities_coords, distance_matrix, population_size, numGenerations,cross
             parents_list.pop()
         for i in range(0,len(parents_list), 2):
             # Se llama a la funcion de cruce con los dos padres
-            offsprings = crossover(cities_names,parents_list[i:i+2])
+            if crossover_method == "pmx":
+                offsprings = partially_mapped_crossover(cities_names,parents_list[i:i+2])
+            else:
+                offsprings = simple_crossover(cities_names,parents_list[i:i+2])
 
             # Se determina si se aplica mutacion a los hijos
             if(random.random() < mutation_rate):
-
-                # Si ocurre una mutacion, se intercambian dos ciudades aleatorias en cada hijo
-                point1 = random.randint(0, len(cities_names) - 1)
-                point2 = random.randint(0, len(cities_names) - 1)
-                offsprings[0][point1], offsprings[0][point2] = (offsprings[0][point2],offsprings[0][point1])
-
-                point1 = random.randint(0, len(cities_names) - 1)
-                point2 = random.randint(0, len(cities_names) - 1)
-                offsprings[1][point1], offsprings[1][point2] = (offsprings[1][point2],offsprings[1][point1])
+                if mutation_method == "inversion":
+                    offsprings[0] = inversion_mutation(offsprings[0])
+                    offsprings[1] = inversion_mutation(offsprings[1])
+                elif mutation_method == "swap":
+                    offsprings[0] = swap_mutation(offsprings[0])
+                    offsprings[1] = swap_mutation(offsprings[1])
 
             evolved_offspring.append(offsprings[0])
             evolved_offspring.append(offsprings[1])
@@ -283,7 +370,7 @@ crossover_rate = [0.5, 0.7, 0.9]
 # Tasa de mutacion, es decir, la probabilidad de que ocurra una mutacion
 mutation_rate = [0.2, 0.4, 0.6]
 # Numero de generaciones, es decir, el numero de iteraciones del algoritmo genetico
-numGenerations = [100, 150, 200]
+numGenerations = [200]
 
 # Nombres de algunos de los problemas TSP disponibles
 cities_names = [
@@ -300,6 +387,14 @@ cities_names = [
     "rbz43748",
     "sra104815"]
 
+"""pi = [1,7,3,2,8,5,9,6,4,10]
+tau = [3,5,4,10,8,1,2,9,6,7]
+cities_names = [i+1 for i in range(len(pi))]
+hijos = partially_mapped_crossover(cities_names,[pi, tau])
+
+print(hijos)
+"""
+
 # Ciclo para obtener los datos de las ciudades y ejecutar el algoritmo genetico
 # Se ejecuta el algoritmo genetico para las primeras 5 ciudades de la lista cities_names
 for i in range(len(cities_names)):
@@ -308,7 +403,7 @@ for i in range(len(cities_names)):
 
     # Se crea el archivo txt donde se almacenaran los resultados
     # de la ciudad, si ya existe, se sobreescribe
-    with open(f"./solutions/{cities_names[i]}.txt", "w") as text_file:
+    with open(f"./solutions/{cities_names[i]}_pmx_inversion.txt", "w") as text_file:
         text_file.write(f"Running GA with {cities_names[i]} data \n\n")
 
     # Se calcula la matriz de distancias
@@ -348,7 +443,7 @@ for i in range(len(cities_names)):
                     shortest_path = ga_solution[index_minimum]
                     minimum_distance = min(population_dist)
 
-                    with open(f"./solutions/{cities_names[i]}.txt", "a") as text_file:
+                    with open(f"./solutions/{cities_names[i]}_pmx_inversion.txt", "a") as text_file:
                         text_file.write(f"num_generations = {numGenerations[m]}\n")
                         text_file.write(f"population_size = {population_size[j]}\n")
                         text_file.write(f"crossover_rate = {crossover_rate[k]}\n")
@@ -356,7 +451,7 @@ for i in range(len(cities_names)):
                         text_file.write(f"minimum_distance = {minimum_distance}\n")
                         text_file.write(f"avg_distance = {np.mean(population_dist)}\n")
                         text_file.write("---------------------------------------------\n\n")
-                    print(f"saved solution data in ./solutions/{cities_names[i]}.txt")
+                    print(f"saved solution data in ./solutions/{cities_names[i]}_pmx_inversion.txt")
 
                     # Mostrar el grafico de la mejor obtenida por el algoritmo genetico
                     show_best_route = False
