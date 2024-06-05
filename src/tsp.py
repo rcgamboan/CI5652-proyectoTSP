@@ -6,7 +6,8 @@
 # Roberto Gamboa, 16-10394
 
 import time
-from utils.generate_timelapse import generate_timelapse
+import pandas as pd
+# from utils.generate_timelapse import generate_timelapse
 from utils.file_names import FILE_NAMES, LABEL_NAMES
 from utils.graficar import graficar_ciudades, graficar_recorrido
 from utils.display_table import display_table
@@ -20,12 +21,10 @@ from heuristic.nearest_neighbour import (
 )
 from heuristic.two_opt import two_opt_local_search
 from heuristic.double_bridge import iterative_local_search
+from meta_heuristic.tabu_search import tabu_search
 
 
 def run_algorithm(name, current_city, save_graph, show_on_screen, algorithm_func, *args):
-
-    cols.append(name)
-
     start_time = time.time()
     result = algorithm_func(*args, current_city)
     end_time = time.time()
@@ -37,20 +36,20 @@ def run_algorithm(name, current_city, save_graph, show_on_screen, algorithm_func
     print(f"Distancia total: {round(distance, 2)}")
     print(f"Tiempo de ejecución: {execution_time} segundos")
 
-    data.append([round(distance, 2), execution_time, ""])
-
     if save_graph:
         graficar_recorrido(
             tour, nodes, "", f"{FILE_NAMES[name]}{current_city}", show_on_screen
         )
     
-    return result
+    return round(distance, 2), execution_time
 
 
 if __name__ == "__main__":
 
     # cities = [ "berlin52", "ch130", "tsp225", "pcb442", "pr1002"]
-    cities = ["berlin52"]
+    cities = ["berlin52", "ch130", "tsp225"]
+    all_data = []
+    # cities = ["ch130"]
     # cities = []
     
     for currentCity in cities:
@@ -81,50 +80,47 @@ if __name__ == "__main__":
         show_each_iteration = False
 
         # RANDOM
-        distance_random, tour_random = run_algorithm(
-            "random_tour",
-            currentCity,
-            save_graph,
-            show_on_screen,
-            random_tour,
-            distance_matrix,
-            nodes,
-            show_each_iteration
-        )
-        
-        # NEAREST NEIGHBOUR
-        distance_NN, tour_NN = run_algorithm(
-            "nn",
-            currentCity,
-            save_graph,
-            show_on_screen,
-            nearest_neighbour,
-            distance_matrix,
-            nodes,
-            show_each_iteration
-        )
+        #distance_random, tour_random = run_algorithm(
+        #    "random_tour",
+        #    currentCity,
+        #    save_graph,
+        #    show_on_screen,
+        #    random_tour,
+        #    distance_matrix,
+        #    nodes,
+        #    show_each_iteration
+        #)
+        #
+        ## NEAREST NEIGHBOUR
+        #distance_NN, tour_NN = run_algorithm(
+        #    "nn",
+        #    currentCity,
+        #    save_graph,
+        #    show_on_screen,
+        #    nearest_neighbour,
+        #    distance_matrix,
+        #    nodes,
+        #    show_each_iteration
+        #)
   
-        # GREEDY
-        distance_greedy, tour_greedy = run_algorithm(
-            "greedy",
-            currentCity,
-            save_graph,
-            show_on_screen,
-            greedy_insertion,
-            distance_matrix,
-            nodes,
-            show_each_iteration,
-        )
+        ## GREEDY
+        #distance_greedy, tour_greedy = run_algorithm(
+        #    "greedy",
+        #    currentCity,
+        #    save_graph,
+        #    show_on_screen,
+        #    greedy_insertion,
+        #    distance_matrix,
+        #    nodes,
+        #    show_each_iteration,
+        #)
 
-        display_table(cols, data, currentCity, "table_initial")
+        #display_table(cols, data, currentCity, "table_initial")
 
         ########################## LOCAL SEARCH ##########################
-        cols = ["best_tour"]
-        data = []
-        data.append([round(best_distance_tour, 2), "N/A", ""])
-
+        print("\nLocal Search")
         # RANDOM
-        distance_random, tour_random = run_algorithm(
+        distance_random, time_random = run_algorithm(
             "two_opt_random",
             currentCity,
             save_graph,
@@ -135,9 +131,11 @@ if __name__ == "__main__":
             random_tour,
             show_each_iteration
         )
-            
+        # print(f"distancia total: {distance_random}")
+        data.append([round(distance_random, 2), time_random, "two_opt_random"])
+
         # NEAREST NEIGHBOUR
-        distance_two_opt_nn, tour_two_opt_nn = run_algorithm(
+        distance_two_opt_nn, time_two_opt_nn = run_algorithm(
             "two_opt_nn",
             currentCity,
             save_graph,
@@ -148,9 +146,11 @@ if __name__ == "__main__":
             nearest_neighbour,
             show_each_iteration
         )
+        # print(f"distancia total: {distance_two_opt_nn}")
+        data.append([round(distance_two_opt_nn, 2), time_two_opt_nn, "two_opt_nn"])
 
         # GREEDY
-        distance_two_opt_greedy, tour_two_opt_greedy = run_algorithm(
+        distance_two_opt_greedy, time_two_opt_greedy = run_algorithm(
             "two_opt_greedy",
             currentCity,
             save_graph,
@@ -161,17 +161,16 @@ if __name__ == "__main__":
             greedy_insertion,
             show_each_iteration
         )
+        # print(f"distancia total: {distance_two_opt_greedy}")
+        data.append([round(distance_two_opt_greedy, 2), time_two_opt_greedy, "two_opt_greedy"])
 
-        display_table(cols, data, currentCity, "table_local_search")
+        # display_table(cols, data, currentCity, "table_local_search")
         
 
         ########################## ITERATED LOCAL SEARCH ##########################
-        cols = ["best_tour"]
-        data = []
-        data.append([round(best_distance_tour, 2), "N/A", ""])
-
+        print("\nIterated Local Search")
         # RANDOM
-        distance_double_bridge_random, tour_double_bridge_random = run_algorithm(
+        distance_double_bridge_random, time_double_bridge_random = run_algorithm(
             "double_bridge_random",
             currentCity,
             save_graph,
@@ -182,9 +181,11 @@ if __name__ == "__main__":
             random_tour,
             show_each_iteration
         )
+        #print(f"distancia total: {distance_double_bridge_random}")
+        data.append([round(distance_double_bridge_random, 2), time_double_bridge_random, "double_bridge_random"])
         
         # NEAREST NEIGHBOUR
-        distance_double_bridge_nn, double_bridge_opt_nn = run_algorithm(
+        distance_double_bridge_nn, time_double_bridge_nn = run_algorithm(
             "double_bridge_nn",
             currentCity,
             save_graph,
@@ -195,9 +196,11 @@ if __name__ == "__main__":
             nearest_neighbour,
             show_each_iteration
         )
+        # print(f"distancia total: {distance_double_bridge_nn}")
+        data.append([round(distance_double_bridge_nn, 2), time_double_bridge_nn, "double_bridge_nn"])
 
         # GREEDY
-        distance_double_bridge_greedy, tour_double_bridge_greedy = run_algorithm(
+        distance_double_bridge_greedy, time_double_bridge_greedy = run_algorithm(
             "double_bridge_greedy",
             currentCity,
             save_graph,
@@ -208,8 +211,52 @@ if __name__ == "__main__":
             greedy_insertion,
             show_each_iteration
         )
+        # print(f"distancia total: {distance_double_bridge_greedy}")
+        data.append([round(distance_double_bridge_greedy, 2), time_double_bridge_greedy, "double_bridge_greedy"])
 
-        display_table(cols, data, currentCity, "table_iterated_local_search")
+        # display_table(cols, data, currentCity, "table_iterated_local_search")
+
+        
+        ########################## TABU SEARCH ##########################
+        # RANDOM
+        print("\nRANDOM")
+        start_time = time.time()
+        distance_tabu_search_random, tour_tabu_search_random = tabu_search(distance_matrix, nodes, random_tour)
+        end_time = time.time()
+        print(f"distancia total: {distance_tabu_search_random}")
+
+        execution_time = round(end_time - start_time, 5)
+        
+        data.append([round(distance_tabu_search_random, 2), execution_time, "tabu_search_random"])
+
+        # NEAREST NEIGHBOUR
+        print("\nNEAREST NEIGHBOUR")
+        start_time = time.time()
+        distance_tabu_search_nn, tour_tabu_search_nn = tabu_search(distance_matrix, nodes, nearest_neighbour)
+        end_time = time.time()
+        print(f"distancia total: {distance_tabu_search_nn}")
+
+        execution_time = round(end_time - start_time, 5)
+
+        data.append([round(distance_tabu_search_nn, 2), execution_time, "tabu_search_nn"])
+
+        # GREEDY
+        print("\nGREEDY")
+        start_time = time.time()
+        distance_tabu_search_greedy, tour_tabu_search_greedy = tabu_search(distance_matrix, nodes, greedy_insertion)
+        end_time = time.time()
+        print(f"distancia total: {distance_tabu_search_greedy}")
+
+        execution_time = round(end_time - start_time, 5)
+
+        data.append([round(distance_tabu_search_greedy, 2), execution_time, "tabu_search_greedy"])
+
+        all_data.extend([[currentCity] + row for row in data])
+
+    df = pd.DataFrame(all_data, columns=["Instancia", "Distancia", "Tiempo", "Algoritmo"])
+    df.to_csv("results.csv", index=False)
+
+    print("Resultados guardados en results.csv")
 
         ########################## TIMELAPSE ##########################
         # generate_timelapse(f"random/{currentCity}", f"{currentCity}/{currentCity}_random_tour")
