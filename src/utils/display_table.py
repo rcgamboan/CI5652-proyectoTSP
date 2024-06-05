@@ -9,7 +9,7 @@ def display_table(cols, data, city, table_name):
     data = np.transpose(data)
 
     col_labels = [LABEL_NAMES[name] for name in cols]
-    rows = ["Distancia\nTotal", "Tiempo de\n ejecucion", "Grafo"]
+    rows = ["Distancia\nTotal", "Cercania" ,"Tiempo de\n ejecucion", "Grafo"]
 
     # Configurar el tamaño de las celdas de la tabla
     table_height = 1  # Altura de la tabla en pulgadas
@@ -53,4 +53,40 @@ def display_table(cols, data, city, table_name):
         f"{LABEL_NAMES[table_name]} {city}", y=0.95, fontsize=14, fontweight="bold"
     )
     plt.savefig(f"../img/{table_name}_{city}.png")
+    plt.show()
+
+
+def display_summary_table(rows, cols, data):
+
+    col_labels = [LABEL_NAMES[name] for name in cols]
+    print(rows, col_labels, data)
+    # Configurar el tamaño de las celdas de la tabla
+    table_height = 1  # Altura de la tabla en pulgadas
+    table_width = 1  # Ancho de la tabla en pulgadas
+    cell_width = table_width / (len(cols))
+    cell_height = table_height / (len(rows) + 1)
+
+    fig, ax = plt.subplots(figsize=(19.2, 10.8))
+    # print(fig, ax)
+    ax.axis("off")
+    # ax.axis()
+
+    # Agregar la tabla
+    table = ax.table(
+        cellText=data,
+        rowLabels=rows,
+        rowLoc="right",
+        colLabels=col_labels,
+        loc="center",
+        cellLoc="center",
+        bbox=[0, 0, 1, 1],
+    )
+
+    table.auto_set_font_size(False)
+    table.set_fontsize(14)
+
+    plt.suptitle(
+        "Resumen", y=0.95, fontsize=14, fontweight="bold"
+    )
+    plt.savefig(f"../img/summary_table.png")
     plt.show()
