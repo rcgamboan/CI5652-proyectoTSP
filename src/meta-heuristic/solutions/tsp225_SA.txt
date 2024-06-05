@@ -1,0 +1,58 @@
+Running SA with tsp225 data 
+
+Algorithm: random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 12731.64643023717 
+---------------------------------------------
+
+Algorithm: greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 4468.200464996837 
+---------------------------------------------
+
+Algorithm: nearest_neighbour 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 4747.663587886916 
+---------------------------------------------
+
+Algorithm: two_opt_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 4176.945969996423 
+---------------------------------------------
+
+Algorithm: two_opt_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 4242.659663494581 
+---------------------------------------------
+
+Algorithm: double_bridge_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 3969.043005423696 
+---------------------------------------------
+
+Algorithm: double_bridge_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 3936.4686284253767 
+---------------------------------------------
+
+Algorithm: double_bridge_random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 3997.170673185451 
+---------------------------------------------
+
