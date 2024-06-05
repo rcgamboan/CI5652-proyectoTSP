@@ -59,7 +59,7 @@ def display_table(cols, data, city, table_name):
 def display_summary_table(rows, cols, data):
 
     col_labels = [LABEL_NAMES[name] for name in cols]
-    print(rows, col_labels, data)
+
     # Configurar el tamaño de las celdas de la tabla
     table_height = 1  # Altura de la tabla en pulgadas
     table_width = 1  # Ancho de la tabla en pulgadas

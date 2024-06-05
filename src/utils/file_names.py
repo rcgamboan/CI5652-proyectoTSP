@@ -12,6 +12,12 @@ FILE_NAMES = {
     "double_bridge_random": "2_bridge_random_",
     "double_bridge_nn": "2_bridge_nn_",
     "double_bridge_greedy": "2_bridge_greedy_",
+    "grasp": "grasp_",
+    "alpha_0": "alpha_0_",
+    "alpha_0.25": "alpha_0.25_",
+    "alpha_0.5": "alpha_0.5_",
+    "alpha_0.75": "alpha_0.75_",
+    "alpha_1": "alpha_1_",
 }
 
 LABEL_NAMES = {
@@ -30,4 +36,10 @@ LABEL_NAMES = {
     "table_initial": "Camino Inicial",
     "table_local_search": "Busqueda local",
     "table_iterated_local_search": "Busqueda Local Iterativa",
+    "grasp": "grasp",
+    "alpha_0": "alpha 0",
+    "alpha_0.25": "alpha 0.25",
+    "alpha_0.5": "alpha 0.5",
+    "alpha_0.75": "alpha 0.75",
+    "alpha_1": "alpha 1",
 }

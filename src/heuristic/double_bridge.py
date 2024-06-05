@@ -35,7 +35,7 @@ def double_bridge_move(tour):
 
 
 def iterative_local_search(
-    distance_matrix, city, algorithm_func, show_iterations, current_city
+    distance_matrix, city, algorithm_func, show_iterations, current_city = ""
 ):
     """
     Búsqueda local iterativa para la resolución del problema del agente viajero (TSP).
