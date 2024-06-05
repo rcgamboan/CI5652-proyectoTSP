@@ -1,4 +1,4 @@
-# Resultados obtenidos con diferentes algoritmos de búsqueda: busqueda local, búsqueda Iterativa y búsqueda tabú
+# Resumen
 | Instancia | Mejor Distancia | Algoritmo | Tiempo | Tipo de Búsqueda |
 |-----------|-----------------|-----------|--------|------------------|
 | berlin52  | 7544.37         | N/A       | N/A    | N/A              |
