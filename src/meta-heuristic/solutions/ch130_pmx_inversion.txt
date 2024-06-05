@@ -1,0 +1,10 @@
+Running GA with ch130 data 
+
+num_generations = 200
+population_size = 10000
+crossover_rate = 0.9
+mutation_rate = 0.1
+minimum_distance = 24879.26243790323
+avg_distance = 30904.221138586785
+---------------------------------------------
+
