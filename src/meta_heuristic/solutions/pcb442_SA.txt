@@ -1,0 +1,58 @@
+Running SA with pcb442 data 
+
+Algorithm: random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 300445.9185323917 
+---------------------------------------------
+
+Algorithm: greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 60863.61810815441 
+---------------------------------------------
+
+Algorithm: nearest_neighbour 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 61931.46403517351 
+---------------------------------------------
+
+Algorithm: two_opt_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 54162.12152198595 
+---------------------------------------------
+
+Algorithm: two_opt_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 57094.28360899214 
+---------------------------------------------
+
+Algorithm: double_bridge_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 53132.3351152294 
+---------------------------------------------
+
+Algorithm: double_bridge_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 53973.67161502687 
+---------------------------------------------
+
+Algorithm: double_bridge_random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 53954.91402989077 
+---------------------------------------------
+

@@ -1,0 +1,58 @@
+Running SA with ch130 data 
+
+Algorithm: random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 13815.86274136571 
+---------------------------------------------
+
+Algorithm: greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 7064.614246647221 
+---------------------------------------------
+
+Algorithm: nearest_neighbour 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 7461.221997006833 
+---------------------------------------------
+
+Algorithm: two_opt_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 6741.94968103882 
+---------------------------------------------
+
+Algorithm: two_opt_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 6685.543788927781 
+---------------------------------------------
+
+Algorithm: double_bridge_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 6246.702697818452 
+---------------------------------------------
+
+Algorithm: double_bridge_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 6238.813362986197 
+---------------------------------------------
+
+Algorithm: double_bridge_random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 6429.074844686277 
+---------------------------------------------
+

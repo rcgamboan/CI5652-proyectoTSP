@@ -1,0 +1,58 @@
+Running SA with berlin52 data 
+
+Algorithm: random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 11721.168548147949 
+---------------------------------------------
+
+Algorithm: greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 8899.831069439486 
+---------------------------------------------
+
+Algorithm: nearest_neighbour 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 8508.71161380323 
+---------------------------------------------
+
+Algorithm: two_opt_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 8060.651582560568 
+---------------------------------------------
+
+Algorithm: two_opt_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 8545.137989877596 
+---------------------------------------------
+
+Algorithm: double_bridge_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 7544.365901904087 
+---------------------------------------------
+
+Algorithm: double_bridge_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 7777.332311275912 
+---------------------------------------------
+
+Algorithm: double_bridge_random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 7544.365901904089 
+---------------------------------------------
+

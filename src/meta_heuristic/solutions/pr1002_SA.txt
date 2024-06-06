@@ -1,0 +1,58 @@
+Running SA with pr1002 data 
+
+Algorithm: random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 2937901.500343155 
+---------------------------------------------
+
+Algorithm: greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 302837.25398396916 
+---------------------------------------------
+
+Algorithm: nearest_neighbour 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 315574.2954093462 
+---------------------------------------------
+
+Algorithm: two_opt_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 277802.42079810903 
+---------------------------------------------
+
+Algorithm: two_opt_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 288245.07472092536 
+---------------------------------------------
+
+Algorithm: double_bridge_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 275041.05580506165 
+---------------------------------------------
+
+Algorithm: double_bridge_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 276588.4315247129 
+---------------------------------------------
+
+Algorithm: double_bridge_random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 278512.9029669052 
+---------------------------------------------
+
