@@ -49,8 +49,7 @@ def iterative_local_search(
     ----------
 
     distance_matrix ([[int/float]]): Matriz de distancias entre los nodos del
-                                     problema (distance_matrix[i][j] representa
-                                     la distancia del nodo i al nodo j).
+    problema (distance_matrix[i][j] representa la distancia del nodo i al nodo j).
     city (list): Lista de nombres o identificadores de las ciudades o nodos.
     algorithm_func (function): Función de heurística que genera una ruta inicial
     (por ejemplo, nearest_neighbour).
