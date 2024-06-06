@@ -36,6 +36,7 @@ LABEL_NAMES = {
     "table_initial": "Camino Inicial",
     "table_local_search": "Busqueda local",
     "table_iterated_local_search": "Busqueda Local Iterativa",
+    "tabu": "tabu",
     "grasp": "grasp",
     "alpha_0": "alpha 0",
     "alpha_0.25": "alpha 0.25",

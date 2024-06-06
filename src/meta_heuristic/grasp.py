@@ -59,11 +59,16 @@ def greedy_randomized_construction(distance_matrix, city, alpha):
     tour = [0]  # Inicializar la ruta con la primera ciudad
 
     while remaining_cities:
-        # print(remaining_cities)
+        #Obtenemos la lista RCL
         candidate_list = restricted_candidate_list(distance_matrix, city, tour[-1], remaining_cities, alpha)
+
+        #Escojemos un candidato aleatorio
         next_city = random.choice(candidate_list)
+
+        # Agregamos a nuestra solucion y elimnamos de los de los posibles candidatos
         tour.append(next_city)
         remaining_cities.remove(next_city)
+        
     tour.append(0)
     distancia_total = sum(distance_matrix[tour[i]][tour[i + 1]] for i in range(n))
     
