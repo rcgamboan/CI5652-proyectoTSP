@@ -35,3 +35,24 @@ Max iterations: 10000
 Mejor distancia: 288245.07472092536 
 ---------------------------------------------
 
+Algorithm: double_bridge_nn 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 275041.05580506165 
+---------------------------------------------
+
+Algorithm: double_bridge_greedy 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 276588.4315247129 
+---------------------------------------------
+
+Algorithm: double_bridge_random 
+Initial temperature: 100 
+Cooling rate: 0.99 
+Max iterations: 10000 
+Mejor distancia: 278512.9029669052 
+---------------------------------------------
+
