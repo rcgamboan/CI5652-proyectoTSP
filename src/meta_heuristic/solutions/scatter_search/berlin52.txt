@@ -1,0 +1,65 @@
+Running scatter search with berlin52 data 
+
+Population size: 40
+Num iterations: 500
+Re-link %: 0.2
+minimum_distance = 10974.161908759655
+avg_distance = 11613.113753262649
+---------------------------------------------
+
+Population size: 40
+Num iterations: 1000
+Re-link %: 0.2
+minimum_distance = 10346.124307772861
+avg_distance = 10527.623594663628
+---------------------------------------------
+
+Population size: 40
+Num iterations: 2000
+Re-link %: 0.2
+minimum_distance = 10226.094974404272
+avg_distance = 10822.075060102074
+---------------------------------------------
+
+Population size: 60
+Num iterations: 500
+Re-link %: 0.2
+minimum_distance = 11218.140866425907
+avg_distance = 11929.4195313041
+---------------------------------------------
+
+Population size: 60
+Num iterations: 1000
+Re-link %: 0.2
+minimum_distance = 10652.859075264168
+avg_distance = 11405.592778274806
+---------------------------------------------
+
+Population size: 60
+Num iterations: 2000
+Re-link %: 0.2
+minimum_distance = 10918.005684580377
+avg_distance = 11464.894062177143
+---------------------------------------------
+
+Population size: 100
+Num iterations: 500
+Re-link %: 0.2
+minimum_distance = 10261.95397680634
+avg_distance = 10588.190669857357
+---------------------------------------------
+
+Population size: 100
+Num iterations: 1000
+Re-link %: 0.2
+minimum_distance = 10030.988545490587
+avg_distance = 10470.472241666652
+---------------------------------------------
+
+Population size: 100
+Num iterations: 2000
+Re-link %: 0.2
+minimum_distance = 9555.915596793391
+avg_distance = 10014.621090648121
+---------------------------------------------
+
