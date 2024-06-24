@@ -41,7 +41,7 @@ def graficar_recorrido(path, cities, file_path, file_name, mostrar=False):
         plt.show()
     plt.close()
 
-def plot_path(cities_coords, shortest_path,minimum_distance,title="TSP GA",display_graph=False):
+def plot_path(cities_coords, shortest_path,minimum_distance,title="TSP GA", folder="", display_graph=False):
 
     fig, ax = plt.subplots()
     ax.plot(
@@ -58,7 +58,7 @@ def plot_path(cities_coords, shortest_path,minimum_distance,title="TSP GA",displ
             color="k")
 
     fig.set_size_inches(16, 12)  
-    plt.savefig(f'../../img/genetic-algorithm/{title}.png')
+    plt.savefig(f'../../img/{folder}/{title}.png')
     if display_graph:
         plt.show()
     plt.close()
