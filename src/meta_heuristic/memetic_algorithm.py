@@ -11,7 +11,7 @@ from utils.graficar import plot_path
 
 
 # Se obtiene la población inicial de manera aleatoria
-def initial_population(cities_list, population_size):
+def initial_population(cities_names, population_size):
     """
     Genera una población inicial de individuos.
     
@@ -29,7 +29,7 @@ def initial_population(cities_list, population_size):
 
     population = []
     for _ in range(population_size):
-        population.append(list(random_permutation(cities_list)))
+        population.append(random.sample(cities_names, len(cities_names)))
     return population
 
 
@@ -49,16 +49,16 @@ def aptitude_probability(distance_matrix, population):
     population_apt_probs (lista de floats): Probabilidad de aptitud de cada individuo en la población.
     """
 
-    population_dist = [
-        calculate_total_distance(ind, distance_matrix) for ind in population
-    ]
-    max_dist = max(population_dist)
-    population_aptitudes = max_dist - np.array(population_dist)
-    population_apt_probs = population_aptitudes / sum(population_aptitudes)
-    return population_apt_probs
+    total_distances = [calculate_total_distance(ind, distance_matrix) for ind in population]
+    # max_dist = max(population_dist)
+    fitness = 1 / np.array(total_distances)
+    probabilities = fitness / fitness.sum()
+    #population_aptitudes = max_dist - np.array(population_dist)
+    #population_apt_probs = population_aptitudes / sum(population_aptitudes)
+    return probabilities
 
 
-def roulette_selection(population, aptitude_probabilities):
+def roulette_selection(population, probabilities):
     """
     Selecciona un individuo de la población utilizando el método de la ruleta.
 
@@ -74,10 +74,13 @@ def roulette_selection(population, aptitude_probabilities):
     selected_individual (lista de ints): Individuo seleccionado.
     """
 
-    cumulative_sum_probs = np.cumsum(aptitude_probabilities)
-    random_value = random.random()
-    selected_individual_index = np.searchsorted(cumulative_sum_probs, random_value)
-    return population[selected_individual_index]
+    cumulative_prob = np.cumsum(probabilities)
+    r = random.random()
+    for i, individual in enumerate(population):
+        if r <= cumulative_prob[i]:
+            return individual
+    #selected_individual_index = np.searchsorted(cumulative_sum_probs, random_value)
+    #return population[selected_individual_index]
 
 
 def triple_crossover(numCities, parents):
@@ -98,38 +101,73 @@ def triple_crossover(numCities, parents):
 
     # Inicializa descendientes
     offspring = [-1] * numCities
+    parent1, parent2, parent3 = parents
 
-    # Selecciona tres puntos de cruce aleatorios
-    c1, c2, c3 = sorted(random.sample(range(numCities), 3))
+    # Elije un punto de cruce aleatorio
+    crossover_point1 = random.randint(0, numCities - 1)
+    crossover_point2 = random.randint(crossover_point1, numCities - 1)
 
-    # Llena los segmentos del descendiente desde cada padre
-    offspring[c1:c2] = parents[0][c1:c2]
+    # Copia el segmento del primer padre al descendiente
+    offspring[crossover_point1 : crossover_point2 + 1] = parent1[
+        crossover_point1 : crossover_point2 + 1
+    ]
 
-    # Lista de genes ya presentes en el descendiente
-    used_genes = set(offspring[c1:c2])
+    # Rellena el resto de los genes del descendiente usando el segundo y tercer padre
+    current_index = (crossover_point2 + 1) % numCities
+    for parent in [parent2, parent3]:
+        for city in parent:
+            if city not in offspring:
+                offspring[current_index] = city
+                current_index = (current_index + 1) % numCities
 
-    # Completa el segmento siguiente con el segundo padre
-    for gene in parents[1]:
-        if len(set(offspring)) == numCities:
+    # Si aún hay ciudades sin asignar, completa con las ciudades restantes del primer padre
+    for city in parent1:
+        if city not in offspring:
+            offspring[current_index] = city
+            current_index = (current_index + 1) % numCities
+
+    ## Selecciona tres puntos de cruce aleatorios
+    #c1, c2, c3 = sorted(random.sample(range(numCities), 3))
+
+    ## Llena los segmentos del descendiente desde cada padre
+    #offspring[c1:c2] = parents[0][c1:c2]
+
+    ## Lista de genes ya presentes en el descendiente
+    #used_genes = set(offspring[c1:c2])
+
+    ## Completa el segmento siguiente con el segundo padre
+    #for gene in parents[1]:
+    #    if len(set(offspring)) == numCities:
+    #        break
+    #    if gene not in used_genes:
+    #        for i in range(c2, c3):
+    #            if offspring[i] == -1:
+    #                offspring[i] = gene
+    #                used_genes.add(gene)
+    #                break
+
+    ## Rellena los genes restantes con el tercer padre
+    #for gene in parents[2]:
+    #    if len(set(offspring)) == numCities:
+    #        break
+    #    if gene not in used_genes:
+    #        for i in range(numCities):
+    #            if offspring[i] == -1:
+    #                offspring[i] = gene
+    #                used_genes.add(gene)
+    #                break
+
+    # Encontrar el valor faltante
+    for i in range(numCities):
+        if i not in offspring:
+            print(f"Missing value: {i}")
             break
-        if gene not in used_genes:
-            for i in range(c2, c3):
-                if offspring[i] == -1:
-                    offspring[i] = gene
-                    used_genes.add(gene)
-                    break
 
-    # Rellena los genes restantes con el tercer padre
-    for gene in parents[2]:
-        if len(set(offspring)) == numCities:
+    # Encontrar el valor repetido
+    for i in range(numCities):
+        if offspring.count(i) > 1:
+            print(f"Repeated value: {i}")
             break
-        if gene not in used_genes:
-            for i in range(numCities):
-                if offspring[i] == -1:
-                    offspring[i] = gene
-                    used_genes.add(gene)
-                    break
-
     return offspring
 
 
@@ -182,6 +220,12 @@ def edge_recombination_mutation(individual):
         individual[idx2_next],
         individual[idx1_next],
     )
+    
+    if not is_valid_individual(individual, size):
+        print("Invalid individual found in edge_recombination_mutation")
+        print(len(individual))
+        print(individual)
+        raise ValueError("Invalid individual found")
 
     return individual
 
@@ -254,6 +298,9 @@ def local_search_2opt(individual, distance_matrix):
                     improved = True
     return best
 
+def is_valid_individual(individual, num_cities):
+    return len(individual) == num_cities and len(set(individual)) == num_cities
+    #return set(individual) == set(range(num_cities))
 
 def run_memetic_ga(
     cities_coords,
@@ -265,6 +312,7 @@ def run_memetic_ga(
     save_every_10_gen=False,
     crossover_method="triple",
     mutation_method="edge_recombination",
+    instance_name="",
 ):
     cities_names = [i for i in range(len(distance_matrix))]
     population = initial_population(cities_names, population_size)
@@ -294,11 +342,10 @@ def run_memetic_ga(
 
         for i in range(0, len(parents_list), 3):
             # Recombina los padres para generar descendientes
-            if random.random() < crossover_rate:
-                if crossover_method == "triple":
-                    offspring = triple_crossover(len(cities_names), parents_list[i : i + 3])
-                else:
-                    raise ValueError("Crossover method not valid")
+            if crossover_method == "triple":
+                offspring = triple_crossover(len(cities_names), parents_list[i : i + 3])
+            else:
+                raise ValueError("Crossover method not valid")
 
             # Aplica mutación a los descendientes
             if random.random() < mutation_rate:
@@ -310,7 +357,7 @@ def run_memetic_ga(
                     offspring = edge_recombination_mutation(offspring)
                 else:
                     raise ValueError("Mutation method not valid")
-
+            
             # Aplica búsqueda local 2-opt a los descendientes
             offspring = local_search_2opt(offspring, distance_matrix)
             evolved_offspring.append(offspring)
@@ -331,6 +378,27 @@ def run_memetic_ga(
         ]
         selected_individuals += [population[i] for i in previous_population_indices]
 
+        #for individual in selected_individuals:
+        #    if not is_valid_individual(individual, len(cities_names)):
+        #        print("Invalid individual found")
+        #        print(f"len(individual) = {len(individual)}")
+        #        print(f"len(cities_names) = {len(cities_names)}")
+        #        print(individual)
+        #        
+        #        # Encontrar el valor faltante
+        #        for i in range(len(cities_names)):
+        #            if i not in individual:
+        #                print(f"Missing value: {i}")
+        #                break
+
+        #        # Encontrar el valor repetido
+        #        for i in range(len(cities_names)):
+        #            if individual.count(i) > 1:
+        #                print(f"Repeated value: {i}")
+        #                break
+        #        
+        #        raise ValueError("Invalid individual found")
+
         
         # Guardar la mejor solución cada 100 generaciones
         if save_every_10_gen and (generation % 100 == 0):
@@ -346,7 +414,7 @@ def run_memetic_ga(
                 cities_coords,
                 shortest_path,
                 minimum_distance,
-                title=f"MemeticGA_{crossover_method}_{mutation_method}_gen{generation}",
+                title=f"MemeticGA_{instance_name}_gen_{generation}",
                 folder="memetic-ga",
                 display_graph=False,
             )
@@ -357,45 +425,57 @@ def run_memetic_ga(
 # Parámetros del algoritmo memético
 
 #population_size = [100, 500, 1000]
-#population_size = [40, 60, 100]
-population_size = [400]
+population_size = [40, 60, 100]
 #crossover_rate = [0.5, 0.7, 0.9]
 crossover_rate = [0.9]
 #mutation_rate = [0.2, 0.4, 0.6]
 mutation_rate = [0.2]
-numGenerations = [3000]
+numGenerations = [1500]
 
 crossover_method = "triple"
 mutation_method = "edge_recombination"
 
 sol_folder = "memetic-ga"
 
-#cities_names = [
-#    "berlin52",
-#    "ch130",
-#    "tsp225",
-#    "pcb442",
-#    "pr1002",
-#    "pr2392",
-#    "eg7146",
-#    "gr9882",
-#    "it16862",
-#    "vm22775",
-#    "rbz43748",
-#    "sra104815",
-#]
+cities_names = [
+    "berlin52",
+    "ch130",
+    "tsp225",
+    "pcb442",
+    "pr1002",
+    "pr2392",
+    "eg7146",
+    "gr9882",
+    "it16862",
+    "vm22775",
+    "rbz43748",
+    "sra104815",
+]
 
-cities_names = ["it16862"]
 
 # Solo las primeras 5 ciudades
 for i in range(5):
     cities_coords = obtener_ciudades(f"../../doc/Benchmarks/{cities_names[i]}.tsp")
     with open(
-        f"./solutions/{sol_folder}/{cities_names[i]}_{crossover_method}_{mutation_method}.txt",
+        f"./solutions/{sol_folder}/{cities_names[i]}_{crossover_method}_{mutation_method}.txt", "w"
     ) as text_file:
         text_file.write(f"Running Memetic GA with {cities_names[i]} data \n\n")
     distance_matrix = np.array(calcular_distancia(cities_coords))
     save_every_10_gen = True
+
+    if i == 0:
+        population_size = [40]
+        numGenerations = [230]
+    elif i == 1:
+        population_size = [80]
+        numGenerations = [450]
+    elif i == 2:
+        population_size = [120]
+        numGenerations = [700]
+    elif i == 3:
+        population_size = [150]
+    else:
+        population_size = [400]
 
     iter = 1
     for j in range(len(population_size)):
@@ -420,6 +500,7 @@ for i in range(5):
                         save_every_10_gen,
                         crossover_method,
                         mutation_method,
+                        instance_name=cities_names[i],
                     )
 
                     population_dist = [

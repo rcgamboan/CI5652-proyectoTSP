@@ -1,0 +1,2 @@
+Running Memetic GA with ch130 data 
+

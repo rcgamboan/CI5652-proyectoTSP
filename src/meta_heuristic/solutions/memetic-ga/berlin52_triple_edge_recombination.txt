@@ -1,0 +1,10 @@
+Running Memetic GA with berlin52 data 
+
+num_generations = 230
+population_size = 40
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 7544.365901904086
+avg_distance = 11873.809643055512
+---------------------------------------------
+

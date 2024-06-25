@@ -1,0 +1,2 @@
+Running Memetic GA with it16862 data 
+
