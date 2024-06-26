@@ -1,2 +1,10 @@
 Running Memetic GA with ch130 data 
 
+num_generations = 100
+population_size = 40
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 6158.9722434435635
+avg_distance = 14034.109231431803
+---------------------------------------------
+

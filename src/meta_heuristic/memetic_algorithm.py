@@ -401,7 +401,7 @@ def run_memetic_ga(
 
         
         # Guardar la mejor solución cada 100 generaciones
-        if save_every_10_gen and (generation % 100 == 0):
+        if save_every_10_gen and (generation % 10 == 0):
             total_dist_all_individuals = [
                 calculate_total_distance(ind, distance_matrix)
                 for ind in selected_individuals
@@ -425,12 +425,13 @@ def run_memetic_ga(
 # Parámetros del algoritmo memético
 
 #population_size = [100, 500, 1000]
-population_size = [40, 60, 100]
+#population_size = [40, 60, 100]
+population_size = [50]
 #crossover_rate = [0.5, 0.7, 0.9]
 crossover_rate = [0.9]
 #mutation_rate = [0.2, 0.4, 0.6]
 mutation_rate = [0.2]
-numGenerations = [1500]
+numGenerations = [170]
 
 crossover_method = "triple"
 mutation_method = "edge_recombination"
@@ -438,8 +439,6 @@ mutation_method = "edge_recombination"
 sol_folder = "memetic-ga"
 
 cities_names = [
-    "berlin52",
-    "ch130",
     "tsp225",
     "pcb442",
     "pr1002",
@@ -462,20 +461,6 @@ for i in range(5):
         text_file.write(f"Running Memetic GA with {cities_names[i]} data \n\n")
     distance_matrix = np.array(calcular_distancia(cities_coords))
     save_every_10_gen = True
-
-    if i == 0:
-        population_size = [40]
-        numGenerations = [230]
-    elif i == 1:
-        population_size = [80]
-        numGenerations = [450]
-    elif i == 2:
-        population_size = [120]
-        numGenerations = [700]
-    elif i == 3:
-        population_size = [150]
-    else:
-        population_size = [400]
 
     iter = 1
     for j in range(len(population_size)):

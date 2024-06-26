@@ -1,0 +1,10 @@
+Running Memetic GA with tsp225 data 
+
+num_generations = 170
+population_size = 50
+crossover_rate = 0.9
+mutation_rate = 0.2
+minimum_distance = 3949.063703407435
+avg_distance = 11353.031700765603
+---------------------------------------------
+
