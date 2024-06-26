@@ -1,65 +1,65 @@
-Running scatter search with berlin52 data 
+Running scatter search with ch130 data 
 
 Ref. set size: 10
 Num iterations: 10
 Re-link %: 0.1
-minimum_distance = 7716.685877327628
-avg_distance = 8038.200841526949
+minimum_distance = 6577.454881902049
+avg_distance = 6635.162151054747
 ---------------------------------------------
 
 Ref. set size: 10
 Num iterations: 20
 Re-link %: 0.1
-minimum_distance = 7544.365901904086
-avg_distance = 7590.147651499549
+minimum_distance = 6285.572010713879
+avg_distance = 6421.475627568887
 ---------------------------------------------
 
 Ref. set size: 10
 Num iterations: 30
 Re-link %: 0.1
-minimum_distance = 7685.014436341403
-avg_distance = 7689.8199928819395
+minimum_distance = 6190.8853392348365
+avg_distance = 6226.83170303979
 ---------------------------------------------
 
 Ref. set size: 20
 Num iterations: 10
 Re-link %: 0.1
-minimum_distance = 7785.613659696772
-avg_distance = 7981.655395988925
+minimum_distance = 6214.507891475432
+avg_distance = 6355.364477999591
 ---------------------------------------------
 
 Ref. set size: 20
 Num iterations: 20
 Re-link %: 0.1
-minimum_distance = 7544.365901904086
-avg_distance = 7655.341897789425
+minimum_distance = 6279.027263536884
+avg_distance = 6321.615710739796
 ---------------------------------------------
 
 Ref. set size: 20
 Num iterations: 30
 Re-link %: 0.1
-minimum_distance = 7544.365901904087
-avg_distance = 7576.799675890054
+minimum_distance = 6261.88303130608
+avg_distance = 6323.272119517343
 ---------------------------------------------
 
 Ref. set size: 30
 Num iterations: 10
 Re-link %: 0.1
-minimum_distance = 7795.610620261627
-avg_distance = 7862.5590962312335
+minimum_distance = 6272.780677361988
+avg_distance = 6353.1671668107465
 ---------------------------------------------
 
 Ref. set size: 30
 Num iterations: 20
 Re-link %: 0.1
-minimum_distance = 7606.948443594047
-avg_distance = 7683.305247431926
+minimum_distance = 6269.287379997918
+avg_distance = 6305.554241499227
 ---------------------------------------------
 
 Ref. set size: 30
 Num iterations: 30
 Re-link %: 0.1
-minimum_distance = 7544.365901904088
-avg_distance = 7590.174417578266
+minimum_distance = 6203.027571319527
+avg_distance = 6277.652290627629
 ---------------------------------------------
 
