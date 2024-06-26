@@ -8,7 +8,7 @@ def two_opt_swap(tour, i, j):
     new_tour = tour[:i] + tour[i:j+1][::-1] + tour[j+1:]
     return new_tour
 
-def tabu_search(distance_matrix, city, algorithm_func, max_iterations=1000):
+def tabu_search(distance_matrix, city, algorithm_func, max_iterations=50):
     """
     Busqueda tabú para resolver el problema del agente viajero.
 

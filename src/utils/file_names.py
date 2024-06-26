@@ -43,4 +43,10 @@ LABEL_NAMES = {
     "alpha_0.5": "alpha 0.5",
     "alpha_0.75": "alpha 0.75",
     "alpha_1": "alpha 1",
+    "ant_colony": "Ant Colony",
+    "20": "Poblacion 20",
+    "40": "Poblacion 40",
+    "60": "Poblacion 60",
+    "80": "Poblacion 80",
+    "100": "Poblacion 100",
 }
