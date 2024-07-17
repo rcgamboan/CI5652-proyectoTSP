@@ -3,6 +3,7 @@ import random
 from pathlib import Path
 import sys, os
 import time
+import signal
 import pandas as pd
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
@@ -175,6 +176,25 @@ cities_names = [
 
 # Inicializa una lista para almacenar los resultados
 results = []
+
+
+def save_results_to_csv():
+    df_results = pd.DataFrame(results)
+    # df_results.to_csv(PROJECT_DIR / "results.csv", index=False)
+    df_results.to_csv(
+        PROJECT_DIR / "img/fermentation/fermentation_results.csv", index=False
+    )
+    print("Resultados guardados en results.csv")
+
+
+def signal_handler(sig, frame):
+    print("\nInterrupción detectada. Guardando resultados...")
+    save_results_to_csv()
+    sys.exit(0)
+
+
+# Configura la señal para capturar Ctrl+C
+signal.signal(signal.SIGINT, signal_handler)
 
 for i in range(4):
     # Obtiene las coordenadas de la solucion
