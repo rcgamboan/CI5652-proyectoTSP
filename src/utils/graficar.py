@@ -1,4 +1,8 @@
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+# Obtiene la ruta del proyecto
+PROJECT_DIR = Path(__file__).resolve().parents[2]
 
 # Utilidad para graficar las ciudades en un plano.
 def graficar_ciudades(cities, title="Ciudades", mostrar=True):
@@ -36,7 +40,7 @@ def graficar_recorrido(path, cities, file_path, file_name, mostrar=False):
     plt.title(file_name)
 
     plt.axis("off")
-    plt.savefig(f"../img/{file_path}/{file_name}.png")
+    plt.savefig(f"{PROJECT_DIR}/img/{file_path}/{file_name}.png")
     if mostrar:
         plt.show()
     plt.close()

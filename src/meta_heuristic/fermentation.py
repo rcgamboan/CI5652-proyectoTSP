@@ -1,14 +1,22 @@
 import numpy as np
 import random
-
+from pathlib import Path
 import sys, os
+import time
+import pandas as pd
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
 from utils.calcular_distancia import (
     calcular_distancia,
     calculate_total_distance,
+    calcular_costo_ruta,
 )
-from utils.leer_archivo import obtener_ciudades
+from utils.graficar import graficar_recorrido
+from utils.leer_archivo import obtener_ciudades, obtener_mejor_ruta
+
+# Obtiene la ruta del proyecto
+PROJECT_DIR = Path(__file__).resolve().parents[2]
 
 
 def generate_initial_solution(cities):
@@ -165,12 +173,20 @@ cities_names = [
     "sra104815",
 ]
 
+# Inicializa una lista para almacenar los resultados
+results = []
+
 for i in range(4):
+    # Obtiene las coordenadas de la solucion
     cities_coords = obtener_ciudades(
-        f"../../doc/Benchmarks/{cities_names[i]}.tsp"
+        PROJECT_DIR / f"doc/Benchmarks/{cities_names[i]}.tsp"
     )
+
+    # Obtiene la matriz de distancias
     distance_matrix = np.array(calcular_distancia(cities_coords))
 
+    # Optimiza la solucion
+    start = time.time()
     best_solution, best_distance = fermentation_optimization(
         list(range(len(cities_coords))),
         distance_matrix,
@@ -178,6 +194,55 @@ for i in range(4):
         population_size=10,
         mutation_rate=0.1,
     )
+    end = time.time()
+
+    # Obtiene el mejor recorrido del benchmark
+    best_tour = obtener_mejor_ruta(
+        PROJECT_DIR / f"doc/Benchmarks/{cities_names[i]}.opt.tour"
+    )
+
+    # Calcula la distancia optima de la instancia
+    best_distance_tour = calcular_costo_ruta(best_tour, distance_matrix)
+
+    # Calcula la distancia relativa
+    relative_distance = (
+        (best_distance - best_distance_tour) / best_distance_tour
+    ) * 100
+
+    # Almacena los resultados
+    results.append(
+        {
+            "City": cities_names[i],
+            "Best Distance": best_distance,
+            "Optimal Distance": best_distance_tour,
+            "Relative Distance (%)": relative_distance,
+            "Execution Time (s)": end - start,
+        }
+    )
 
     print(f"Mejor solución para {cities_names[i]}: {best_solution}")
     print(f"Mejor distancia para {cities_names[i]}: {best_distance}")
+    print(f"Tiempo de ejecución: {end - start} segundos\n")
+
+    # Completa el recorrido
+    best_solution.append(best_solution[0])
+
+    # Grafica el recorrido
+    graficar_recorrido(
+        best_solution,
+        cities_coords,
+        "fermentation",
+        f"fermentation_{cities_names[i]}",
+        mostrar=True,
+    )
+
+# Crea un DataFrame de pandas
+df_results = pd.DataFrame(results)
+
+# Guarda los resultados en un archivo CSV
+df_results.to_csv(
+    PROJECT_DIR / "img/fermentation/fermentation_results.csv", index=False
+)
+
+# Muestra la tabla de resultados
+print(df_results)
